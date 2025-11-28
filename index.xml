@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Gary Wong</title>
-    <link>https://svenuscf.github.io/</link>
-    <description>Recent content on Gary Wong</description>
+    <title>Gary Wong&#39;s Studio</title>
+    <link>https://garywong.pro/</link>
+    <description>Recent content on Gary Wong&#39;s Studio</description>
     <generator>Hugo -- 0.152.2</generator>
-    <language>en-US</language>
+    <language>en-us</language>
     <lastBuildDate>Fri, 28 Nov 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://svenuscf.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://garywong.pro/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello World</title>
-      <link>https://svenuscf.github.io/posts/hello-word/</link>
+      <link>https://garywong.pro/posts/hello-word/</link>
       <pubDate>Fri, 28 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://svenuscf.github.io/posts/hello-word/</guid>
+      <guid>https://garywong.pro/posts/hello-word/</guid>
       <description>&lt;p&gt;First blog post on GitHub Pages&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Navigating the Digital and Traditional: My Journey in IT and Music</title>
+      <link>https://garywong.pro/posts/navigating-digital-traditional/</link>
+      <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/posts/navigating-digital-traditional/</guid>
+      <description>&lt;p&gt;Welcome to my blog! I’m Gary Wong, and I&amp;rsquo;m thrilled to share with you my experiences and insights from a career that intertwines the rapidly evolving world of Information Technology with the timeless melodies of ancient Chinese music.&lt;/p&gt;
+&lt;h2 id=&#34;a-glimpse-into-my-professional-world&#34;&gt;A Glimpse into My Professional World&lt;/h2&gt;
+&lt;p&gt;As a Senior Network Architect, my journey through the realms of IT has been both challenging and rewarding. With over 23 years in the industry, I&amp;rsquo;ve witnessed firsthand the incredible evolution of technology. My expertise spans a diverse array of areas, including networking, cloud computing, data center management, and cybersecurity. These fields, though distinct, are interconnected in fascinating ways, and I&amp;rsquo;ve had the privilege of exploring these interconnections throughout my career.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -2,17 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://svenuscf.github.io/</loc>
+    <loc>https://garywong.pro/</loc>
     <lastmod>2025-11-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://svenuscf.github.io/posts/hello-word/</loc>
+    <loc>https://garywong.pro/posts/hello-word/</loc>
     <lastmod>2025-11-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://svenuscf.github.io/posts/</loc>
+    <loc>https://garywong.pro/posts/</loc>
     <lastmod>2025-11-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://svenuscf.github.io/categories/</loc>
+    <loc>https://garywong.pro/categories/blog/</loc>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://svenuscf.github.io/tags/</loc>
+    <loc>https://garywong.pro/tags/career/</loc>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/categories/</loc>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/guqin/</loc>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/posts/navigating-digital-traditional/</loc>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/networking/</loc>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/reflection/</loc>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/</loc>
+    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/about/</loc>
   </url>
 </urlset>
