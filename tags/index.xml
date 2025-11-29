@@ -6,27 +6,97 @@
     <description>Recent content in Tags on Gary Wong&#39;s Blog</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Nov 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 18 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://garywong.pro/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Ai</title>
-      <link>https://garywong.pro/tags/ai/</link>
-      <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
-      <guid>https://garywong.pro/tags/ai/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Architecture</title>
       <link>https://garywong.pro/tags/architecture/</link>
-      <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/tags/architecture/</guid>
       <description></description>
     </item>
     <item>
       <title>Automation</title>
       <link>https://garywong.pro/tags/automation/</link>
-      <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/tags/automation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Leadership</title>
+      <link>https://garywong.pro/tags/leadership/</link>
+      <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/leadership/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Networking</title>
+      <link>https://garywong.pro/tags/networking/</link>
+      <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/networking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dc</title>
+      <link>https://garywong.pro/tags/dc/</link>
+      <pubDate>Fri, 01 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/dc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nexus9k</title>
+      <link>https://garywong.pro/tags/nexus9k/</link>
+      <pubDate>Fri, 01 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/nexus9k/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tcam</title>
+      <link>https://garywong.pro/tags/tcam/</link>
+      <pubDate>Fri, 01 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/tcam/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Troubleshooting</title>
+      <link>https://garywong.pro/tags/troubleshooting/</link>
+      <pubDate>Fri, 01 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/troubleshooting/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ansible</title>
+      <link>https://garywong.pro/tags/ansible/</link>
+      <pubDate>Wed, 01 May 2024 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/ansible/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Awx</title>
+      <link>https://garywong.pro/tags/awx/</link>
+      <pubDate>Wed, 01 May 2024 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/awx/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cisco</title>
+      <link>https://garywong.pro/tags/cisco/</link>
+      <pubDate>Wed, 01 May 2024 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/cisco/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>https://garywong.pro/tags/kubernetes/</link>
+      <pubDate>Wed, 01 May 2024 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ai</title>
+      <link>https://garywong.pro/tags/ai/</link>
+      <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/ai/</guid>
       <description></description>
     </item>
     <item>
@@ -41,20 +111,6 @@
       <link>https://garywong.pro/tags/guqin/</link>
       <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/tags/guqin/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Leadership</title>
-      <link>https://garywong.pro/tags/leadership/</link>
-      <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
-      <guid>https://garywong.pro/tags/leadership/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Networking</title>
-      <link>https://garywong.pro/tags/networking/</link>
-      <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
-      <guid>https://garywong.pro/tags/networking/</guid>
       <description></description>
     </item>
     <item>

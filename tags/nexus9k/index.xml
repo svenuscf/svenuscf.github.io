@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Nexus9k on Gary Wong&#39;s Blog</title>
+    <link>https://garywong.pro/tags/nexus9k/</link>
+    <description>Recent content in Nexus9k on Gary Wong&#39;s Blog</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://garywong.pro/tags/nexus9k/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tweaking the Cisco Nexus 9000 TCAM: A Real-World Fix and iCAM Insights</title>
+      <link>https://garywong.pro/posts/nexus9000-tcam-icam/</link>
+      <pubDate>Fri, 01 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/posts/nexus9000-tcam-icam/</guid>
+      <description>&lt;p&gt;In a recent project, I had the opportunity to work with something “new” yet familiar. During a customer data center refresh project, one of the key tasks was upgrading their aging Nexus 5000 to the new Nexus 9000 series.&lt;/p&gt;
+&lt;p&gt;The model in play? &lt;strong&gt;N93360YC-FX2&lt;/strong&gt;, a powerhouse with enhanced capabilities — but with a few nuances.&lt;/p&gt;
+&lt;p&gt;At first glance, porting over configurations from the N5K seemed straightforward.&lt;br&gt;
+No FCoE, no zoning, no fancy storage integrations.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

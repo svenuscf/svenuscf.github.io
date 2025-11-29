@@ -6,18 +6,40 @@
     <description>Recent content in Tech on Gary Wong&#39;s Blog</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Nov 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 18 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://garywong.pro/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Stop Writing CLI — Start Validating Design</title>
       <link>https://garywong.pro/posts/stop-writing-cli-start-validating-design/</link>
-      <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/posts/stop-writing-cli-start-validating-design/</guid>
       <description>&lt;p&gt;&lt;img alt=&#34;Stop Writing CLI&#34; loading=&#34;lazy&#34; src=&#34;https://garywong.pro/posts/stop-writing-cli-start-validating-design/cli.avif&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;the-project-that-triggered-this-post&#34;&gt;The Project That Triggered This Post&lt;/h2&gt;
 &lt;p&gt;Recently, I was assigned to a mid-scale network migration spanning three data centers.&lt;/p&gt;
 &lt;p&gt;The architecture was straightforward but labor-intensive: dozens of VRFs, hundreds of point-to-point BGP sessions in a BGP fabric, and a VMware NSX overlay. Despite this modern setup, I was asked to manually write all of the configuration changes as CLI.&lt;/p&gt;
 &lt;p&gt;After coding over &lt;strong&gt;6,000 lines of CLI&lt;/strong&gt; that night, I paused to reflect:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Tweaking the Cisco Nexus 9000 TCAM: A Real-World Fix and iCAM Insights</title>
+      <link>https://garywong.pro/posts/nexus9000-tcam-icam/</link>
+      <pubDate>Fri, 01 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/posts/nexus9000-tcam-icam/</guid>
+      <description>&lt;p&gt;In a recent project, I had the opportunity to work with something “new” yet familiar. During a customer data center refresh project, one of the key tasks was upgrading their aging Nexus 5000 to the new Nexus 9000 series.&lt;/p&gt;
+&lt;p&gt;The model in play? &lt;strong&gt;N93360YC-FX2&lt;/strong&gt;, a powerhouse with enhanced capabilities — but with a few nuances.&lt;/p&gt;
+&lt;p&gt;At first glance, porting over configurations from the N5K seemed straightforward.&lt;br&gt;
+No FCoE, no zoning, no fancy storage integrations.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Continue the Network Automation Journey Using AWX</title>
+      <link>https://garywong.pro/posts/awx-network-automation/</link>
+      <pubDate>Wed, 01 May 2024 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/posts/awx-network-automation/</guid>
+      <description>&lt;p&gt;I have been working on a project recently to assist a customer in upgrading &lt;strong&gt;thousands of devices&lt;/strong&gt; in their network. Managing such a large-scale upgrade requires automation to ensure consistency, efficiency, and reduced manual intervention.&lt;/p&gt;
+&lt;p&gt;For this project, &lt;strong&gt;AWX&lt;/strong&gt; was selected as the automation UI platform, providing a powerful interface for managing Ansible playbooks, job templates, inventories, and credentials.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;what-is-awx&#34;&gt;What is AWX?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;AWX&lt;/strong&gt; is the upstream open-source project for Red Hat Ansible Tower.&lt;br&gt;
+It provides an intuitive web UI for:&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

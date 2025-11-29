@@ -84,8 +84,8 @@ After coding over 6,000 lines of CLI that night, I paused to reflect:">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2023-11-18T00:00:00+00:00">
-    <meta property="article:modified_time" content="2023-11-18T00:00:00+00:00">
+    <meta property="article:published_time" content="2025-11-18T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-11-18T00:00:00+00:00">
     <meta property="article:tag" content="Networking">
     <meta property="article:tag" content="Architecture">
     <meta property="article:tag" content="Automation">
@@ -132,8 +132,8 @@ After coding over 6,000 lines of CLI that night, I paused to reflect:">
   "articleBody": "\nThe Project That Triggered This Post Recently, I was assigned to a mid-scale network migration spanning three data centers.\nThe architecture was straightforward but labor-intensive: dozens of VRFs, hundreds of point-to-point BGP sessions in a BGP fabric, and a VMware NSX overlay. Despite this modern setup, I was asked to manually write all of the configuration changes as CLI.\nAfter coding over 6,000 lines of CLI that night, I paused to reflect:\nShould network design in 2025 still rely on manual CLI output? Are we truly addressing the core architecture, or merely throwing syntax at complexity? A better question would have been:\nCould we design this multi-site data center fabric in a more automated, intent-driven way from the start?\nThe Real Problem: We’re Designing Backwards The network itself wasn’t broken — but the approach was.\nIn this case, the team had been:\nManually subnetting point-to-point IP addresses in spreadsheets or Notepad Copy-pasting BGP neighbor configurations with only ASNs changed Dispersing route-redistribution logic across individual devices Adding a VMware NSX overlay as an abstraction layer that didn’t reduce complexity The design lacked any intent-based modeling.\nThe CLI became both the glue holding the solution together and the scapegoat for its shortcomings.\nManual IP Subnetting is Outdated Today, manually calculating point-to-point subnets shouldn’t exist.\nInstead:\nDefine IP pools Define automated assignment policies Let software handle the math In an API-first, cloud-first, IaC world, we shouldn’t still be solving BGP mesh addressing with “spreadsheet math.”\nIt’s slow, brittle, and architecturally obsolete.\nThe Role We Should Play As network architects, our job is not to churn out config lines.\nWe are hired to:\nValidate and verify design logic Model configuration intent Align topology with business and security requirements Build networks that are scalable, observable, and automatable In other words:\nStop being a config writer. Start being a design validator.\nWe demonstrate value through architecture, not typing speed.\nWhat Needs to Change Technically: Use centralized IP pools and templates Automate config generation (Python, Jinja2) Use structured intent (YAML/JSON) Leverage design metadata to generate configs Adopt modern fabrics (ACI, EVPN-VXLAN) to simplify multi-site design Culturally: Stop accepting “just give me the config” Steer the conversation toward design validation Respond with partnership such as: “Let me review the design logic first and deliver a reusable configuration model.”\nThis reframes you as a strategic advisor — not a syntax producer.\nIf You’re Still Writing CLI Manually… Here’s the hard truth:\nIf you’re typing every line by hand, you’re proving you can type, not that you can think.\nDon’t let decades of experience be reduced to syntax.\nYour value is in strategy, not the keyboard.\nConclusion: Be the Strategic Advisor, Not the Keyboard Resource We often hear:\n“Hey, can you just generate the config for us?”\nA better response:\n“Yes — but let me first review the design so I’m not just fixing symptoms.” “Let’s align on the architecture model so we don’t create another one-off solution.” Because the future of network design isn’t more CLI.\nIt’s:\nbetter context better consistency smarter delivery Let’s raise the bar — one design at a time. ",
   "wordCount" : "514",
   "inLanguage": "en",
-  "datePublished": "2023-11-18T00:00:00Z",
-  "dateModified": "2023-11-18T00:00:00Z",
+  "datePublished": "2025-11-18T00:00:00Z",
+  "dateModified": "2025-11-18T00:00:00Z",
   "author":{
     "@type": "Person",
     "name": "Gary Wong"
@@ -218,7 +218,7 @@ After coding over 6,000 lines of CLI that night, I paused to reflect:">
     <h1 class="post-title entry-hint-parent">
       Stop Writing CLI — Start Validating Design
     </h1>
-    <div class="post-meta"><span title='2023-11-18 00:00:00 +0000 UTC'>November 18, 2023</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>Gary Wong</span>
+    <div class="post-meta"><span title='2025-11-18 00:00:00 +0000 UTC'>November 18, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>Gary Wong</span>
 
 </div>
   </header> <div class="toc">
@@ -371,10 +371,10 @@ Your value is in <strong>strategy</strong>, not the keyboard.</p>
       <li><a href="https://garywong.pro/tags/leadership/">Leadership</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://garywong.pro/posts/navigating-digital-traditional/">
-    <span class="title">« Prev</span>
+  <a class="next" href="https://garywong.pro/posts/nexus9000-tcam-icam/">
+    <span class="title">Next »</span>
     <br>
-    <span>Navigating the Digital and Traditional: My Journey in IT and Music</span>
+    <span>Tweaking the Cisco Nexus 9000 TCAM: A Real-World Fix and iCAM Insights</span>
   </a>
 </nav>
 

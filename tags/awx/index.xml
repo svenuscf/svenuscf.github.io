@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Awx on Gary Wong&#39;s Blog</title>
+    <link>https://garywong.pro/tags/awx/</link>
+    <description>Recent content in Awx on Gary Wong&#39;s Blog</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 May 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://garywong.pro/tags/awx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Continue the Network Automation Journey Using AWX</title>
+      <link>https://garywong.pro/posts/awx-network-automation/</link>
+      <pubDate>Wed, 01 May 2024 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/posts/awx-network-automation/</guid>
+      <description>&lt;p&gt;I have been working on a project recently to assist a customer in upgrading &lt;strong&gt;thousands of devices&lt;/strong&gt; in their network. Managing such a large-scale upgrade requires automation to ensure consistency, efficiency, and reduced manual intervention.&lt;/p&gt;
+&lt;p&gt;For this project, &lt;strong&gt;AWX&lt;/strong&gt; was selected as the automation UI platform, providing a powerful interface for managing Ansible playbooks, job templates, inventories, and credentials.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;what-is-awx&#34;&gt;What is AWX?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;AWX&lt;/strong&gt; is the upstream open-source project for Red Hat Ansible Tower.&lt;br&gt;
+It provides an intuitive web UI for:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

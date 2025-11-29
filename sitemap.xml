@@ -2,13 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://garywong.pro/tags/ai/</loc>
-    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://garywong.pro/tags/architecture/</loc>
-    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
+    <lastmod>2025-11-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://garywong.pro/tags/automation/</loc>
+    <lastmod>2025-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/categories/</loc>
+    <lastmod>2025-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/</loc>
+    <lastmod>2025-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/leadership/</loc>
+    <lastmod>2025-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/networking/</loc>
+    <lastmod>2025-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/posts/</loc>
+    <lastmod>2025-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/posts/stop-writing-cli-start-validating-design/</loc>
+    <lastmod>2025-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/</loc>
+    <lastmod>2025-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/categories/tech/</loc>
+    <lastmod>2025-11-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/dc/</loc>
+    <lastmod>2024-11-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/nexus9k/</loc>
+    <lastmod>2024-11-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/tcam/</loc>
+    <lastmod>2024-11-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/troubleshooting/</loc>
+    <lastmod>2024-11-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/posts/nexus9000-tcam-icam/</loc>
+    <lastmod>2024-11-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/ansible/</loc>
+    <lastmod>2024-05-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/awx/</loc>
+    <lastmod>2024-05-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/cisco/</loc>
+    <lastmod>2024-05-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/posts/awx-network-automation/</loc>
+    <lastmod>2024-05-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/kubernetes/</loc>
+    <lastmod>2024-05-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/ai/</loc>
     <lastmod>2023-11-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://garywong.pro/categories/blog/</loc>
@@ -17,37 +71,13 @@
     <loc>https://garywong.pro/tags/career/</loc>
     <lastmod>2023-11-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://garywong.pro/categories/</loc>
-    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://garywong.pro/</loc>
-    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://garywong.pro/tags/guqin/</loc>
-    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://garywong.pro/tags/leadership/</loc>
     <lastmod>2023-11-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://garywong.pro/posts/navigating-digital-traditional/</loc>
     <lastmod>2023-11-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://garywong.pro/tags/networking/</loc>
-    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://garywong.pro/posts/</loc>
-    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://garywong.pro/tags/reflection/</loc>
-    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://garywong.pro/posts/stop-writing-cli-start-validating-design/</loc>
-    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://garywong.pro/tags/</loc>
-    <lastmod>2023-11-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://garywong.pro/categories/tech/</loc>
     <lastmod>2023-11-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://garywong.pro/about/</loc>
