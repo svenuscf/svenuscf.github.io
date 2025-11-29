@@ -30,6 +30,14 @@
 No FCoE, no zoning, no fancy storage integrations.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Automating Cisco Device Upgrades with Ansible: A Playbook Journey</title>
+      <link>https://garywong.pro/posts/automating-cisco-device-upgrades-ansible/</link>
+      <pubDate>Sun, 01 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/posts/automating-cisco-device-upgrades-ansible/</guid>
+      <description>&lt;p&gt;As networks scale and new software updates become available, keeping Cisco devices up to date is crucial for maintaining optimal performance, security, and functionality. However, manually upgrading multiple devices can be time-consuming and prone to errors.&lt;/p&gt;
+&lt;p&gt;That’s where &lt;strong&gt;Ansible&lt;/strong&gt; comes into play, allowing us to automate and streamline the entire upgrade process for Cisco IOS/IOS-XE devices. Over the past few weeks, I’ve been working on a series of Ansible playbooks to automate this task efficiently.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Continue the Network Automation Journey Using AWX</title>
       <link>https://garywong.pro/posts/awx-network-automation/</link>
       <pubDate>Wed, 01 May 2024 00:00:00 +0000</pubDate>
