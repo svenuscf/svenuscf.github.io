@@ -50,6 +50,18 @@ No FCoE, no zoning, no fancy storage integrations.&lt;/p&gt;</description>
 It provides an intuitive web UI for:&lt;/p&gt;</description>
     </item>
     <item>
+      <title>DHCP Relay in EVPN-VXLAN</title>
+      <link>https://garywong.pro/posts/dhcp-relay-evpn-vxlan/</link>
+      <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/posts/dhcp-relay-evpn-vxlan/</guid>
+      <description>&lt;p&gt;In previous posts, I discussed the construction of an EVPN-VXLAN fabric using Cisco NDFC.&lt;br&gt;
+A critical aspect often overlooked — and the focus of this post — is the transition from a traditional 3-tier data centre architecture to an EVPN-VXLAN setup.&lt;/p&gt;
+&lt;p&gt;One notable challenge in this transition is the configuration of the &lt;strong&gt;DHCP relay&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;why-dhcp-relay-behaves-differently-in-evpn-vxlan&#34;&gt;Why DHCP Relay Behaves Differently in EVPN-VXLAN&lt;/h2&gt;
+&lt;p&gt;Traditionally, DHCP relays are configured to identify the default gateway using &lt;strong&gt;link-selection&lt;/strong&gt; (DHCP Option 82 sub-option 5), ensuring IP addresses are allocated from the correct scope.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Navigating the Digital and Traditional: My Journey in IT and Music</title>
       <link>https://garywong.pro/posts/navigating-digital-traditional/</link>
       <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
