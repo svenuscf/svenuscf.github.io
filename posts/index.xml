@@ -17,5 +17,16 @@
 &lt;h2 id=&#34;a-glimpse-into-my-professional-world&#34;&gt;A Glimpse into My Professional World&lt;/h2&gt;
 &lt;p&gt;As a Senior Network Architect, my journey through the realms of IT has been both challenging and rewarding. With over 23 years in the industry, I&amp;rsquo;ve witnessed firsthand the incredible evolution of technology. My expertise spans a diverse array of areas, including networking, cloud computing, data center management, and cybersecurity. These fields, though distinct, are interconnected in fascinating ways, and I&amp;rsquo;ve had the privilege of exploring these interconnections throughout my career.&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>Stop Writing CLI — Start Validating Design</title>
+      <link>https://garywong.pro/posts/stop-writing-cli-start-validating-design/</link>
+      <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/posts/stop-writing-cli-start-validating-design/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;Stop Writing CLI&#34; loading=&#34;lazy&#34; src=&#34;https://garywong.pro/posts/stop-writing-cli-start-validating-design/cli.avif&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;the-project-that-triggered-this-post&#34;&gt;The Project That Triggered This Post&lt;/h2&gt;
+&lt;p&gt;Recently, I was assigned to a mid-scale network migration spanning three data centers.&lt;/p&gt;
+&lt;p&gt;The architecture was straightforward but labor-intensive: dozens of VRFs, hundreds of point-to-point BGP sessions in a BGP fabric, and a VMware NSX overlay. Despite this modern setup, I was asked to manually write all of the configuration changes as CLI.&lt;/p&gt;
+&lt;p&gt;After coding over &lt;strong&gt;6,000 lines of CLI&lt;/strong&gt; that night, I paused to reflect:&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
