@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Arista SR-MPLS Lab — Rebuilt on Containerlab | Gary Wong&#39;s Blog</title>
-<meta name="keywords" content="Arista, SR-MPLS, Containerlab, EVPN, Lab">
+<meta name="keywords" content="Arista, SR-MPLS, Containerlab, EVPN, Lab, networking">
 <meta name="description" content="Rebuilding my SR-MPLS lab from EVE-NG to Containerlab, with a cleaner topology, versioned configs, and a reproducible design process.">
 <meta name="author" content="">
 <link rel="canonical" href="https://garywong.pro/posts/arista-sr-mpls/">
@@ -84,6 +84,7 @@
     <meta property="article:tag" content="Containerlab">
     <meta property="article:tag" content="Evpn">
     <meta property="article:tag" content="Lab">
+    <meta property="article:tag" content="Networking">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arista SR-MPLS Lab — Rebuilt on Containerlab">
 <meta name="twitter:description" content="Rebuilding my SR-MPLS lab from EVE-NG to Containerlab, with a cleaner topology, versioned configs, and a reproducible design process.">
@@ -117,7 +118,7 @@
   "name": "Arista SR-MPLS Lab — Rebuilt on Containerlab",
   "description": "Rebuilding my SR-MPLS lab from EVE-NG to Containerlab, with a cleaner topology, versioned configs, and a reproducible design process.",
   "keywords": [
-    "Arista", "SR-MPLS", "Containerlab", "EVPN", "Lab"
+    "Arista", "SR-MPLS", "Containerlab", "EVPN", "Lab", "networking"
   ],
   "articleBody": " After moving my blog to https://garywong.pro, this is my first technical article under the new branding.\nInstead of migrating the old post 1:1, I rebuilt the entire SR-MPLS lab from scratch — this time using Containerlab, version control, and documented architecture decisions.\nWhy I rebuilt this lab I originally built this topology on EVE-NG back in 2023. It worked, but it also had typical issues:\nNo version control Risk of silent config drift Hard to reproduce environments CLI screenshots instead of structured notes On Containerlab, things changed: Topology as YAML (Infrastructure as Code) All configs tracked in GitHub Topology image embedded in README Fast teardown / rebuild cycle This is closer to how real network testing should be done in 2026.\nArchitecture Summary The lab focuses on Segment Routing over MPLS using Arista cEOS, with ISIS for the underlay and BGP EVPN for service signaling.\nKey design points Single ISIS level-2 domain SRGB: 400000–410000 Prefix-SID allocation for all loopbacks Two route-reflectors for BGP signaling EVPN used without VXLAN (pure RFC7432 signaling over MPLS) Topology image:\nTopology YAML Everything starts from one file:\ncontainerlab deploy -t ceos-sr-mpls.yaml The YAML defines:\nNodes (cEOS images) Management IPs SR-MPLS links Startup configs The full YAML is here:\nhttps://github.com/svenuscf/arista-ceos-sr-mpls/blob/main/ceos-sr-mpls.yaml\nGitHub Repository Project Repo:\nhttps://github.com/svenuscf/arista-ceos-sr-mpls\nKey folders:\nceos-sr-mpls.yaml — topology definition configs/ — all router configs arista-ceos-sr-mpls-topo.png — visual topology image readme.md — quick deployment guide Clone:\ngit clone https://github.com/svenuscf/arista-ceos-sr-mpls.git cd arista-ceos-sr-mpls containerlab deploy -t ceos-sr-mpls.yaml Validation approach (Architect mindset) This lab is not a config copy-paste article.\nI validated the design by answering these questions:\nDoes ISIS correctly advertise prefix-SIDs for every loopback? Is the LFIB populated with the expected next-hops for each remote SR endpoint? Do RR nodes propagate EVPN routes (RT2/RT5) without VXLAN? Does the SRGB remain consistent across all nodes? When everything aligns, the control plane becomes predictable — and troubleshooting becomes trivial.\nUseful show commands These are the main operational commands I use to verify SR-MPLS behavior on Arista:\nshow isis segment-routing show isis neighbors show bgp evpn summary show mpls lfib route show ip route detail (Full operational checklist will be a separate post.)\nLessons learned during rebuild Running topology as code is liberating — I can destroy and redeploy the entire lab in \u003c30 seconds Topology changes become Git commits, not memories Using an explicit SRGB range helps avoid silent SID collisions EVPN without VXLAN is still highly relevant for MPLS service design EVE-NG vs Containerlab (one architect’s perspective) Feature EVE-NG Containerlab Config version control screenshots Git Topology definition UI YAML Reproducibility Medium 100% Build speed Slow Fast Integration Standalone DevOps-ready Verdict:\nI will still use EVE-NG for GUI, but all future design work will start in Containerlab.\nWhat’s next I plan to expand this series into multiple posts:\nPart 2 — TI-LFA testing with controlled link failures Part 3 — EVPN Route-Types deep dive Part 4 — SRv6 equivalent lab Contact If you’re a network architect, SE, DC/SP engineer, or studying SR-MPLS design — connect with me:\nLinkedIn: https://www.linkedin.com/in/gary-wong-0503a837/ GitHub: https://github.com/svenuscf Blog: https://garywong.pro Meta This is blog post #1 after rebranding from my old platform to Hugo + Containerlab + real Git workflows.\nI want my technical content to reflect how I think as an architect, rather than just showing lines of CLI.\nStop writing CLI. Start validating design.\n",
   "wordCount" : "551",
@@ -420,6 +421,7 @@ I want my technical content to reflect how I think as an architect, rather than 
       <li><a href="https://garywong.pro/tags/containerlab/">Containerlab</a></li>
       <li><a href="https://garywong.pro/tags/evpn/">Evpn</a></li>
       <li><a href="https://garywong.pro/tags/lab/">Lab</a></li>
+      <li><a href="https://garywong.pro/tags/networking/">Networking</a></li>
     </ul>
 <nav class="paginav">
   <a class="next" href="https://garywong.pro/posts/stop-writing-cli-start-validating-design/">
@@ -433,7 +435,7 @@ I want my technical content to reflect how I think as an architect, rather than 
 <ul class="share-buttons">
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Arista SR-MPLS Lab — Rebuilt on Containerlab on x"
-            href="https://x.com/intent/tweet/?text=Arista%20SR-MPLS%20Lab%20%e2%80%94%20Rebuilt%20on%20Containerlab&amp;url=https%3a%2f%2fgarywong.pro%2fposts%2farista-sr-mpls%2f&amp;hashtags=Arista%2cSR-MPLS%2cContainerlab%2cEVPN%2cLab">
+            href="https://x.com/intent/tweet/?text=Arista%20SR-MPLS%20Lab%20%e2%80%94%20Rebuilt%20on%20Containerlab&amp;url=https%3a%2f%2fgarywong.pro%2fposts%2farista-sr-mpls%2f&amp;hashtags=Arista%2cSR-MPLS%2cContainerlab%2cEVPN%2cLab%2cnetworking">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
