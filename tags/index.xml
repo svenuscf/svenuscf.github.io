@@ -6,8 +6,43 @@
     <description>Recent content in Tags on Gary Wong&#39;s Blog</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 04 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://garywong.pro/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Arista</title>
+      <link>https://garywong.pro/tags/arista/</link>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/arista/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Containerlab</title>
+      <link>https://garywong.pro/tags/containerlab/</link>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/containerlab/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Evpn</title>
+      <link>https://garywong.pro/tags/evpn/</link>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/evpn/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lab</title>
+      <link>https://garywong.pro/tags/lab/</link>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/lab/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SR-MPLS</title>
+      <link>https://garywong.pro/tags/sr-mpls/</link>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/sr-mpls/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Architecture</title>
       <link>https://garywong.pro/tags/architecture/</link>
@@ -118,13 +153,6 @@
       <link>https://garywong.pro/tags/dhcp/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/tags/dhcp/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Evpn</title>
-      <link>https://garywong.pro/tags/evpn/</link>
-      <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://garywong.pro/tags/evpn/</guid>
       <description></description>
     </item>
     <item>
