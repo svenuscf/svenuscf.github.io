@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Gary Wong&#39;s Blog</title>
     <link>https://garywong.pro/tags/</link>
@@ -13,7 +13,7 @@
       <link>https://garywong.pro/tags/networking/</link>
       <pubDate>Wed, 11 Mar 2026 22:10:00 +1100</pubDate>
       <guid>https://garywong.pro/tags/networking/</guid>
-      <description></description>
+      <description>Posts about data centre, SD-WAN, automation, and network architecture.</description>
     </item>
     <item>
       <title>Arista</title>
@@ -181,7 +181,7 @@
       <link>https://garywong.pro/tags/ai/</link>
       <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/tags/ai/</guid>
-      <description></description>
+      <description>Posts related to Artificial Intelligence, LLMs, and automation in networking.</description>
     </item>
     <item>
       <title>Career</title>
@@ -195,7 +195,7 @@
       <link>https://garywong.pro/tags/guqin/</link>
       <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/tags/guqin/</guid>
-      <description></description>
+      <description>Notes and reflections on Guqin, music, and culture.</description>
     </item>
     <item>
       <title>Reflection</title>
