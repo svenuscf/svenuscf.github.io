@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>When a Design Template Scales Undocumented Compromise | Gary Wong&#39;s Blog</title>
-<meta name="keywords" content="enterprise architecture, network architecture, design governance, transformation">
+<meta name="keywords" content="networking">
 <meta name="description" content="A follow-on site may inherit topology, but not the reasoning, constraints, or risks behind it.">
 <meta name="author" content="">
 <link rel="canonical" href="https://garywong.pro/posts/when-a-design-template-scales-undocumented-compromise/">
@@ -79,10 +79,7 @@
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-03-13T22:10:00+11:00">
     <meta property="article:modified_time" content="2026-03-13T22:10:00+11:00">
-    <meta property="article:tag" content="Enterprise Architecture">
-    <meta property="article:tag" content="Network Architecture">
-    <meta property="article:tag" content="Design Governance">
-    <meta property="article:tag" content="Transformation">
+    <meta property="article:tag" content="Networking">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="When a Design Template Scales Undocumented Compromise">
 <meta name="twitter:description" content="A follow-on site may inherit topology, but not the reasoning, constraints, or risks behind it.">
@@ -116,7 +113,7 @@
   "name": "When a Design Template Scales Undocumented Compromise",
   "description": "A follow-on site may inherit topology, but not the reasoning, constraints, or risks behind it.",
   "keywords": [
-    "enterprise architecture", "network architecture", "design governance", "transformation"
+    "networking"
   ],
   "articleBody": " Large transformation programs often rely on reusable design templates. In principle, that makes sense. A proven pattern should improve consistency, reduce design effort, and help delivery move faster across multiple sites.\nBut that only works when the template preserves more than topology.\nRecently, I was involved in a follow-on site where an inherited template clearly contained structural compromises. I could see them early. The problem was not that compromise existed. Real projects always involve trade-offs. The real problem was that the design mandate was to follow the established template, while the rationale behind key design choices had not been documented clearly enough to guide architectural decisions.\nThat meant the next site inherited the structure, but not the reasoning behind it.\nA template can preserve shape without preserving intent The inherited pattern looked standard on paper. But several elements immediately suggested that parts of the design reflected compromise rather than clean target-state architecture.\nOne example was the introduction of an additional Layer 2 segment between otherwise distinct architecture domains. Another was continued Layer 2 handoff toward server-side and legacy-connected environments. In the same overall pattern, gateway ownership for dependent environments still remained in the legacy estate, along with downstream infrastructure pending replacement.\nThese decisions may all have been understandable in their original context.\nBut there was no clear record explaining whether they were driven by migration constraints, operational ownership boundaries, product limitations, cutover timing, or temporary coexistence requirements.\nWithout that context, the next site inherited topology without inheriting design intent.\nThe issue is not compromise itself Compromise is part of architecture. No serious transformation program is built in a perfect greenfield vacuum.\nThe real issue begins when compromise is normalized into the template without preserving:\nwhy it was introduced, what constraint caused it, what risk it created, and under what conditions it should be challenged, retired, or redesigned. Once that happens, reuse stops being safe standardization and starts becoming repeated ambiguity.\nThe follow-on site exposes what the template really is A design can appear mature when judged only in the context where it was first produced.\nThe real test comes when a later site introduces new requirements or slightly different dependencies.\nThat is when a critical distinction becomes visible:\nIs this a reusable architecture pattern?\nOr is this simply a previous solution shape that has been promoted into a standard?\nIn this case, the inherited design was reusable enough to copy, but not interpretable enough to adapt safely.\nThat is a very different problem from implementation quality. It is a governance and architecture problem.\nRisks that are not called out do not disappear One of the most important lessons here is that undocumented risk does not stay neutral.\nIf structural compromise is not explicitly identified, later teams and customers naturally assume they are working from an approved, supportable, repeatable standard. They do not see which parts of the pattern may already contain unresolved tension between target-state architecture and historical dependency.\nThen when issues begin surfacing across sites, the conversation becomes reactive.\nWhy does the standard still rely on legacy placement?\nWhy is Layer 2 adjacency being extended further than expected?\nWhy were these design risks not made explicit earlier?\nBy the time those questions are being raised by the customer, the real failure has already happened.\nNot necessarily in implementation.\nNot necessarily even in the original compromise itself.\nBut in the failure to preserve rationale, constraints, and residual risk.\nArchitecture must preserve more than connectivity If a design is expected to scale across multiple sites, diagrams and topology alone are not enough.\nA reusable architecture pattern should also preserve:\nthe constraints that shaped it, the non-ideal trade-offs it contains, the risks introduced by those trade-offs, the assumptions that must remain true for the pattern to stay valid, and the conditions under which a later site should challenge the model. Without that, what gets repeated is not architecture maturity.\nIt is undocumented compromise at scale.\nFinal thought Compromise is not the enemy of architecture.\nUndocumented compromise is.\nA reusable template must preserve more than the physical or logical layout of a design. It must also preserve intent, known constraints, and accepted risks. Otherwise, every follow-on site may inherit not just structure, but defects.\nThat is where enterprise architecture still matters most: not in drawing the first template, but in ensuring the next team knows what must stay, what can change, and why.\n",
   "wordCount" : "730",
@@ -297,10 +294,7 @@ But in the failure to preserve rationale, constraints, and residual risk.</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://garywong.pro/tags/enterprise-architecture/">Enterprise Architecture</a></li>
-      <li><a href="https://garywong.pro/tags/network-architecture/">Network Architecture</a></li>
-      <li><a href="https://garywong.pro/tags/design-governance/">Design Governance</a></li>
-      <li><a href="https://garywong.pro/tags/transformation/">Transformation</a></li>
+      <li><a href="https://garywong.pro/tags/networking/">Networking</a></li>
     </ul>
 <nav class="paginav">
   <a class="next" href="https://garywong.pro/posts/arista-sr-mpls/">
@@ -314,7 +308,7 @@ But in the failure to preserve rationale, constraints, and residual risk.</p>
 <ul class="share-buttons">
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share When a Design Template Scales Undocumented Compromise on x"
-            href="https://x.com/intent/tweet/?text=When%20a%20Design%20Template%20Scales%20Undocumented%20Compromise&amp;url=https%3a%2f%2fgarywong.pro%2fposts%2fwhen-a-design-template-scales-undocumented-compromise%2f&amp;hashtags=enterprisearchitecture%2cnetworkarchitecture%2cdesigngovernance%2ctransformation">
+            href="https://x.com/intent/tweet/?text=When%20a%20Design%20Template%20Scales%20Undocumented%20Compromise&amp;url=https%3a%2f%2fgarywong.pro%2fposts%2fwhen-a-design-template-scales-undocumented-compromise%2f&amp;hashtags=networking">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
