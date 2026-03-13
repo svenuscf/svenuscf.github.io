@@ -1,6 +1,6 @@
 ---
 title: "When a Design Template Scales Undocumented Compromise"
-date: 2026-03-13T22:10:00+11:00
+date: 2026-03-11T22:10:00+11:00
 draft: false
 tags: ["networking"]
 description: "A follow-on site may inherit topology, but not the reasoning, constraints, or risks behind it."
