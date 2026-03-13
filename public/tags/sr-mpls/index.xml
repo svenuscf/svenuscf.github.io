@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>SR-MPLS on Gary Wong&#39;s Blog</title>
+    <link>https://garywong.pro/tags/sr-mpls/</link>
+    <description>Recent content in SR-MPLS on Gary Wong&#39;s Blog</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 04 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://garywong.pro/tags/sr-mpls/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Arista SR-MPLS Lab — Rebuilt on Containerlab</title>
+      <link>https://garywong.pro/posts/arista-sr-mpls/</link>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/posts/arista-sr-mpls/</guid>
+      <description>Rebuilding my SR-MPLS lab from EVE-NG to Containerlab, with a cleaner topology, versioned configs, and a reproducible design process.</description>
+    </item>
+  </channel>
+</rss>

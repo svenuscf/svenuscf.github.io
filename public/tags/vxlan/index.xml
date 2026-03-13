@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Vxlan on Gary Wong&#39;s Blog</title>
+    <link>https://garywong.pro/tags/vxlan/</link>
+    <description>Recent content in Vxlan on Gary Wong&#39;s Blog</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://garywong.pro/tags/vxlan/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DHCP Relay in EVPN-VXLAN</title>
+      <link>https://garywong.pro/posts/dhcp-relay-evpn-vxlan/</link>
+      <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/posts/dhcp-relay-evpn-vxlan/</guid>
+      <description>&lt;p&gt;In previous posts, I discussed the construction of an EVPN-VXLAN fabric using Cisco NDFC.&lt;br&gt;
+A critical aspect often overlooked — and the focus of this post — is the transition from a traditional 3-tier data centre architecture to an EVPN-VXLAN setup.&lt;/p&gt;
+&lt;p&gt;One notable challenge in this transition is the configuration of the &lt;strong&gt;DHCP relay&lt;/strong&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;why-dhcp-relay-behaves-differently-in-evpn-vxlan&#34;&gt;Why DHCP Relay Behaves Differently in EVPN-VXLAN&lt;/h2&gt;
+&lt;p&gt;Traditionally, DHCP relays are configured to identify the default gateway using &lt;strong&gt;link-selection&lt;/strong&gt; (DHCP Option 82 sub-option 5), ensuring IP addresses are allocated from the correct scope.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
