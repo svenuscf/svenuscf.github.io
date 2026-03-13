@@ -1,0 +1,50 @@
+baseURL = "https://garywong.pro/"
+languageCode = "en-us"
+title = "Gary Wong's Blog"
+theme = "PaperMod"
+
+pagination.pagerSize = 10
+
+enableRobotsTXT = true
+
+[params]
+  env = "production"
+  customCSS = ["css/extended/home.css"]
+  defaultTheme = "auto"        # auto / dark / light
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowBreadCrumbs = true
+  ShowPostNavLinks = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+
+ [params.homeInfoParams]
+ title = "Gary Wong - About Me"
+ content = "Technical Director & Architect with 25+ years of experience in AI, networking, security and cloud infrastructure. I share insights on enterprise architecture, automation, leadership, and the cultural balance I find through Guqin - a traditional Chinese musical instrument."
+
+# 主選單
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "Networking"
+  url = "/tags/networking/"
+  weight = 2
+
+[[menu.main]]
+  name = "AI"
+  url = "/tags/ai/"
+  weight = 3
+
+[[menu.main]]
+  name = "Guqin"
+  url = "/tags/guqin/"
+  weight = 4
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 5
+

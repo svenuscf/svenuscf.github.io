@@ -1,0 +1,37 @@
+/* Custom tweaks for homepage spacing on PaperMod */
+
+/* Reduce the vertical space between the intro block and the post list */
+body.home .home-info,
+body.list.home .home-info {
+  margin-bottom: 0.4rem !important;
+  padding-bottom: 0 !important;
+}
+
+/* PaperMod uses a grid/flex gap on the main container – shrink it on Home */
+body.home main.main,
+body.list.home main.main {
+  gap: 0.3rem !important;   /* try 0.4rem later if you want it even tighter */
+}
+
+/* Make sure the first card after the intro doesn't add extra top margin */
+body.home .home-info + .post-entry,
+body.home .home-info + section,
+body.list.home .home-info + .post-entry,
+body.list.home .home-info + section {
+  margin-top: 0.3rem !important;
+}
+
+/* Slightly tighten overall card spacing on the home page */
+body.home .post-entry,
+body.list.home .post-entry {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Remove "featured post" spacing when homeInfoParams is used */
+.first-entry {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1rem !important;
+    grid-column: auto !important;   /* prevents stretching */
+}
+
