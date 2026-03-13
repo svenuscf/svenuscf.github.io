@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Containerlab on Gary Wong&#39;s Blog</title>
     <link>https://garywong.pro/tags/containerlab/</link>
     <description>Recent content in Containerlab on Gary Wong&#39;s Blog</description>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 04 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://garywong.pro/tags/containerlab/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,7 @@
       <link>https://garywong.pro/posts/arista-sr-mpls/</link>
       <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/posts/arista-sr-mpls/</guid>
-      <description>Rebuilding my SR-MPLS lab from EVE-NG to Containerlab, with a cleaner topology, versioned configs, and a reproducible design process.</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;After moving my blog to &lt;strong&gt;&lt;a href=&#34;https://garywong.pro&#34;&gt;https://garywong.pro&lt;/a&gt;&lt;/strong&gt;, this is my first technical article under the new branding.&lt;br&gt;&#xA;Instead of migrating the old post 1:1, I &lt;strong&gt;rebuilt the entire SR-MPLS lab&lt;/strong&gt; from scratch — this time using Containerlab, version control, and documented architecture decisions.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;why-i-rebuilt-this-lab&#34;&gt;Why I rebuilt this lab&lt;/h2&gt;&#xA;&lt;p&gt;I originally built this topology on EVE-NG back in 2023.&#xA;It worked, but it also had typical issues:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;No version control&lt;/li&gt;&#xA;&lt;li&gt;Risk of silent config drift&lt;/li&gt;&#xA;&lt;li&gt;Hard to reproduce environments&lt;/li&gt;&#xA;&lt;li&gt;CLI screenshots instead of structured notes&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;on-containerlab-things-changed&#34;&gt;On Containerlab, things changed:&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Topology as YAML (Infrastructure as Code)&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;All configs tracked in GitHub&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Topology image embedded in README&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Fast teardown / rebuild cycle&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;This is closer to how real network testing &lt;strong&gt;should&lt;/strong&gt; be done in 2026.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
