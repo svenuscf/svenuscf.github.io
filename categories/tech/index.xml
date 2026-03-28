@@ -6,8 +6,16 @@
     <description>Recent content in Tech on Gary Wong&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://garywong.pro/categories/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>From 0–22 to 0–5: Learning AI the Hard Way in 1999</title>
+      <link>https://garywong.pro/posts/robocup-1999-fyp/</link>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/posts/robocup-1999-fyp/</guid>
+      <description>&lt;p&gt;In 1999, three of us at HKUST decided to spend our final year project trying to teach a team of simulated soccer players how to survive against the world champions. We did not have GPUs, Python, or deep learning frameworks. We had C, a room full of Sun workstations, an NFS share, and a lot of stubbornness.&lt;/p&gt;
+&lt;p&gt;Our opponent was CMUnited from Carnegie Mellon University, the top RoboCup simulator team at the time. They were the kind of team that routinely crushed others by double digits. Our starting point was simple: take our baseline HKUST team, play them against CMUnited, and see what happens.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Stop Writing CLI — Start Validating Design</title>
       <link>https://garywong.pro/posts/stop-writing-cli-start-validating-design/</link>

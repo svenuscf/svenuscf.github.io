@@ -1,6 +1,6 @@
 ---
 title: "From 0–22 to 0–5: Learning AI the Hard Way in 1999"
-date: 2026-03-29
+date: 2026-03-27
 author: "Gary Wong"
 slug: "robocup-1999-fyp"
 tags: ["ai"]

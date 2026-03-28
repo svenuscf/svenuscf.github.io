@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>From 0–22 to 0–5: Learning AI the Hard Way in 1999 | Gary Wong&#39;s Blog</title>
+<meta name="keywords" content="ai">
+<meta name="description" content="In 1999, three of us at HKUST decided to spend our final year project trying to teach a team of simulated soccer players how to survive against the world champions. We did not have GPUs, Python, or deep learning frameworks. We had C, a room full of Sun workstations, an NFS share, and a lot of stubbornness.
+Our opponent was CMUnited from Carnegie Mellon University, the top RoboCup simulator team at the time. They were the kind of team that routinely crushed others by double digits. Our starting point was simple: take our baseline HKUST team, play them against CMUnited, and see what happens.">
+<meta name="author" content="Gary Wong">
+<link rel="canonical" href="https://garywong.pro/posts/robocup-1999-fyp/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.08f90dfa5269e38cdaa4a12e9d69f743157ab723e3ba201ae48c64a9b878532d.css" integrity="sha256-CPkN&#43;lJp44zapKEunWn3QxV6tyPjuiAa5Ixkqbh4Uy0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://garywong.pro/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://garywong.pro/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://garywong.pro/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://garywong.pro/apple-touch-icon.png">
+<link rel="mask-icon" href="https://garywong.pro/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://garywong.pro/posts/robocup-1999-fyp/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://garywong.pro/posts/robocup-1999-fyp/">
+  <meta property="og:site_name" content="Gary Wong&#39;s Blog">
+  <meta property="og:title" content="From 0–22 to 0–5: Learning AI the Hard Way in 1999">
+  <meta property="og:description" content="In 1999, three of us at HKUST decided to spend our final year project trying to teach a team of simulated soccer players how to survive against the world champions. We did not have GPUs, Python, or deep learning frameworks. We had C, a room full of Sun workstations, an NFS share, and a lot of stubbornness.
+Our opponent was CMUnited from Carnegie Mellon University, the top RoboCup simulator team at the time. They were the kind of team that routinely crushed others by double digits. Our starting point was simple: take our baseline HKUST team, play them against CMUnited, and see what happens.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-27T00:00:00+00:00">
+    <meta property="article:tag" content="AI">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="From 0–22 to 0–5: Learning AI the Hard Way in 1999">
+  <meta name="twitter:description" content="In 1999, three of us at HKUST decided to spend our final year project trying to teach a team of simulated soccer players how to survive against the world champions. We did not have GPUs, Python, or deep learning frameworks. We had C, a room full of Sun workstations, an NFS share, and a lot of stubbornness.
+Our opponent was CMUnited from Carnegie Mellon University, the top RoboCup simulator team at the time. They were the kind of team that routinely crushed others by double digits. Our starting point was simple: take our baseline HKUST team, play them against CMUnited, and see what happens.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://garywong.pro/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "From 0–22 to 0–5: Learning AI the Hard Way in 1999",
+      "item": "https://garywong.pro/posts/robocup-1999-fyp/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "From 0–22 to 0–5: Learning AI the Hard Way in 1999",
+  "name": "From 0–22 to 0–5: Learning AI the Hard Way in 1999",
+  "description": "In 1999, three of us at HKUST decided to spend our final year project trying to teach a team of simulated soccer players how to survive against the world champions. We did not have GPUs, Python, or deep learning frameworks. We had C, a room full of Sun workstations, an NFS share, and a lot of stubbornness.\nOur opponent was CMUnited from Carnegie Mellon University, the top RoboCup simulator team at the time. They were the kind of team that routinely crushed others by double digits. Our starting point was simple: take our baseline HKUST team, play them against CMUnited, and see what happens.\n",
+  "keywords": [
+    "ai"
+  ],
+  "articleBody": "In 1999, three of us at HKUST decided to spend our final year project trying to teach a team of simulated soccer players how to survive against the world champions. We did not have GPUs, Python, or deep learning frameworks. We had C, a room full of Sun workstations, an NFS share, and a lot of stubbornness.\nOur opponent was CMUnited from Carnegie Mellon University, the top RoboCup simulator team at the time. They were the kind of team that routinely crushed others by double digits. Our starting point was simple: take our baseline HKUST team, play them against CMUnited, and see what happens.\nThe first scoreline was 0–22.\nRoboCup 2D soccer simulation, similar to what we used in 1999. Image credit: Wikipedia, “RoboCup 2D Soccer Simulation League”.\nWhy we still called it “AI” Back then, “AI” did not mean large language models; it meant you wrote programs that tried to make sensible decisions in messy environments. The soccer simulator gave each player limited vision, noisy sensor readings, and a small set of actions. You had to decide, every few hundred milliseconds, whether to run, turn, pass, shoot, or just try not to make things worse.\nInstead of hard‑coding every behavior, we wanted the agents to learn from experience. That idea—letting the system improve by trial and error—is what drew us to reinforcement learning, long before it became a buzzword in industry.\nWe picked a method that, in simple terms, tried out many different “little programs” inside each player, watched how well they did in matches, and then kept mutating the better ones. It was more like selective breeding for strategies than like today’s gradient‑based deep learning. Conceptually, it sounded elegant. In practice, it meant a lot of waiting.\nOur “cluster”: a late‑90s computer lab Our “compute cluster” was a lab of Sun Ultra‑class SPARC workstations in a horizontal desktop setup, with chunky CRT monitors sitting directly on top of the beige boxes, classic late‑90s UNIX style. To us, as undergraduates, having access to around twenty of these machines felt like owning a supercomputer.\nA late‑90s Sun Ultra‑class SPARC workstation, similar to what we used in the HKUST lab.\nWe did “distributed training” without using that phrase.\nAll the machines mounted the same NFS share in the lab. We split the set of candidate strategies into chunks and assigned them to different workstations. Each machine would:\nLoad its assigned strategies Play simulated matches to see how they performed Write the results to files on the shared disk A small “supervisor” program then walked through that shared directory, collected everyone’s results, and produced the next generation of strategies. Today, people would talk about parameter servers, workers, and orchestration. We just talked about “scripts” and “jobs” and hoped NFS would not freeze.\nSometimes the bottleneck was not the CPU at all; it was the fact that twenty machines were all trying to read and write to the same directory at the same time.\nWe let this whole system run for about a month.\nFrom 0–22 to 0–5 After that first brutal 0–22, we started the long training run. The lab lights were often off, but the fans on the SPARC boxes were still humming. We got used to reading logs instead of watching matches.\nWhen we finally played our new, “trained” team against CMUnited again, the scoreline changed.\n0–5.\nIt was still a clear defeat, but it felt very different. The players held their positions a bit better. They avoided some of the most embarrassing mistakes. They forced the champions to work a little harder for each goal. We had not built a winner, but we had clearly moved from “no chance” to “at least respectable.”\nFor a bunch of undergrads sharing a lab full of borrowed machines, that small improvement was huge.\nWhat this taught me about AI (before deep learning) Looking back, a few lessons have stuck with me much more than any specific algorithm:\nComputation is part of the idea. On paper, our approach sounded powerful. In reality, we were capped by how many matches we could simulate in a month on those machines. The theory and the hardware were inseparable. Systems work matters as much as algorithms. A lot of our time went into scripting runs, dealing with crashes, and coping with NFS quirks. The fanciest learning method in the world does nothing if your pipeline cannot stay up long enough to train it. You get what you reward. Our learned team became decent at “not losing too badly,” but not at scoring. Looking back, it is obvious: our setup implicitly rewarded survival more than risk‑taking. The AI optimized exactly what we asked for, not what we wished for. Progress is often incremental. Going from 0–22 to 0–5 is not a Hollywood story. It is much more typical of real AI work: incremental, imperfect, but undeniably moving in the right direction. Seeing today’s AI through a 1999 lens Fast‑forward to today. We talk about large language models, retrieval‑augmented generation, and reinforcement learning from human feedback. We can rent, in minutes, more compute than our lab had access to in an entire semester. We have libraries that hide the complexity of distributed training behind a few configuration flags.\nFrom the outside, it all looks very different from a late‑90s computer lab full of beige boxes. But the experience in 1999 quietly shaped how I think about AI now:\nWhen I see a model behave “safely but uselessly,” I hear the echo of our over‑defensive soccer agents. When someone says “it’s just a matter of compute,” I remember how hard it was to squeeze more learning out of our month‑long run. When people are surprised that an AI system does exactly what its reward structure encourages, I think of our 0–5 and smile. We did not change the world with that project. But somewhere between that first 0–22 and the final 0–5, I learned that AI is not magic. It is a long, messy negotiation between algorithms, data, compute, and the real‑world goals we try—often clumsily—to encode.\nAnd that realization has stayed with me, through every new wave of AI hype since.\nImages sourced from Wikipedia and public online archives, used here for illustrative and non‑commercial purposes.\n",
+  "wordCount" : "1037",
+  "inLanguage": "en",
+  "datePublished": "2026-03-27T00:00:00Z",
+  "dateModified": "2026-03-27T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Gary Wong"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://garywong.pro/posts/robocup-1999-fyp/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Gary Wong's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://garywong.pro/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://garywong.pro/" accesskey="h" title="Gary Wong&#39;s Blog (Alt + H)">Gary Wong&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://garywong.pro/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://garywong.pro/tags/networking/" title="Networking">
+                    <span>Networking</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://garywong.pro/tags/ai/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://garywong.pro/tags/guqin/" title="Guqin">
+                    <span>Guqin</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://garywong.pro/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://garywong.pro/">Home</a>&nbsp;»&nbsp;<a href="https://garywong.pro/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      From 0–22 to 0–5: Learning AI the Hard Way in 1999
+    </h1>
+    <div class="post-meta"><span title='2026-03-27 00:00:00 +0000 UTC'>March 27, 2026</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>Gary Wong</span>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#why-we-still-called-it-ai" aria-label="Why we still called it “AI”">Why we still called it “AI”</a></li>
+                <li>
+                    <a href="#our-cluster-a-late90s-computer-lab" aria-label="Our “cluster”: a late‑90s computer lab">Our “cluster”: a late‑90s computer lab</a></li>
+                <li>
+                    <a href="#from-022-to-05" aria-label="From 0–22 to 0–5">From 0–22 to 0–5</a></li>
+                <li>
+                    <a href="#what-this-taught-me-about-ai-before-deep-learning" aria-label="What this taught me about AI (before deep learning)">What this taught me about AI (before deep learning)</a></li>
+                <li>
+                    <a href="#seeing-todays-ai-through-a-1999-lens" aria-label="Seeing today’s AI through a 1999 lens">Seeing today’s AI through a 1999 lens</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>In 1999, three of us at HKUST decided to spend our final year project trying to teach a team of simulated soccer players how to survive against the world champions. We did not have GPUs, Python, or deep learning frameworks. We had C, a room full of Sun workstations, an NFS share, and a lot of stubbornness.</p>
+<p>Our opponent was CMUnited from Carnegie Mellon University, the top RoboCup simulator team at the time. They were the kind of team that routinely crushed others by double digits. Our starting point was simple: take our baseline HKUST team, play them against CMUnited, and see what happens.</p>
+<p>The first scoreline was <strong>0–22</strong>.</p>
+<figure>
+    <img loading="lazy" src="/images/robocup-2d-field.jpg"
+         alt="RoboCup 2D soccer simulation field"/> 
+</figure>
+
+<p><em>RoboCup 2D soccer simulation, similar to what we used in 1999. Image credit: Wikipedia, “RoboCup 2D Soccer Simulation League”.</em></p>
+<h2 id="why-we-still-called-it-ai">Why we still called it “AI”<a hidden class="anchor" aria-hidden="true" href="#why-we-still-called-it-ai">#</a></h2>
+<p>Back then, “AI” did not mean large language models; it meant you wrote programs that tried to make sensible decisions in messy environments. The soccer simulator gave each player limited vision, noisy sensor readings, and a small set of actions. You had to decide, every few hundred milliseconds, whether to run, turn, pass, shoot, or just try not to make things worse.</p>
+<p>Instead of hard‑coding every behavior, we wanted the agents to learn from experience. That idea—letting the system improve by trial and error—is what drew us to reinforcement learning, long before it became a buzzword in industry.</p>
+<p>We picked a method that, in simple terms, tried out many different “little programs” inside each player, watched how well they did in matches, and then kept mutating the better ones. It was more like selective breeding for strategies than like today’s gradient‑based deep learning. Conceptually, it sounded elegant. In practice, it meant a lot of waiting.</p>
+<h2 id="our-cluster-a-late90s-computer-lab">Our “cluster”: a late‑90s computer lab<a hidden class="anchor" aria-hidden="true" href="#our-cluster-a-late90s-computer-lab">#</a></h2>
+<p>Our “compute cluster” was a lab of Sun Ultra‑class SPARC workstations in a horizontal desktop setup, with chunky CRT monitors sitting directly on top of the beige boxes, classic late‑90s UNIX style. To us, as undergraduates, having access to around twenty of these machines felt like owning a supercomputer.</p>
+<figure>
+    <img loading="lazy" src="/images/sun-ultra-workstation.png"
+         alt="Sun Ultra-class SPARC workstation"/> 
+</figure>
+
+<p><em>A late‑90s Sun Ultra‑class SPARC workstation, similar to what we used in the HKUST lab.</em></p>
+<p>We did “distributed training” without using that phrase.</p>
+<p>All the machines mounted the same NFS share in the lab. We split the set of candidate strategies into chunks and assigned them to different workstations. Each machine would:</p>
+<ul>
+<li>Load its assigned strategies</li>
+<li>Play simulated matches to see how they performed</li>
+<li>Write the results to files on the shared disk</li>
+</ul>
+<p>A small “supervisor” program then walked through that shared directory, collected everyone’s results, and produced the next generation of strategies. Today, people would talk about parameter servers, workers, and orchestration. We just talked about “scripts” and “jobs” and hoped NFS would not freeze.</p>
+<p>Sometimes the bottleneck was not the CPU at all; it was the fact that twenty machines were all trying to read and write to the same directory at the same time.</p>
+<p>We let this whole system run for about a month.</p>
+<h2 id="from-022-to-05">From 0–22 to 0–5<a hidden class="anchor" aria-hidden="true" href="#from-022-to-05">#</a></h2>
+<p>After that first brutal 0–22, we started the long training run. The lab lights were often off, but the fans on the SPARC boxes were still humming. We got used to reading logs instead of watching matches.</p>
+<p>When we finally played our new, “trained” team against CMUnited again, the scoreline changed.</p>
+<p><strong>0–5.</strong></p>
+<p>It was still a clear defeat, but it felt very different. The players held their positions a bit better. They avoided some of the most embarrassing mistakes. They forced the champions to work a little harder for each goal. We had not built a winner, but we had clearly moved from “no chance” to “at least respectable.”</p>
+<p>For a bunch of undergrads sharing a lab full of borrowed machines, that small improvement was huge.</p>
+<h2 id="what-this-taught-me-about-ai-before-deep-learning">What this taught me about AI (before deep learning)<a hidden class="anchor" aria-hidden="true" href="#what-this-taught-me-about-ai-before-deep-learning">#</a></h2>
+<p>Looking back, a few lessons have stuck with me much more than any specific algorithm:</p>
+<ul>
+<li><strong>Computation is part of the idea.</strong> On paper, our approach sounded powerful. In reality, we were capped by how many matches we could simulate in a month on those machines. The theory and the hardware were inseparable.</li>
+<li><strong>Systems work matters as much as algorithms.</strong> A lot of our time went into scripting runs, dealing with crashes, and coping with NFS quirks. The fanciest learning method in the world does nothing if your pipeline cannot stay up long enough to train it.</li>
+<li><strong>You get what you reward.</strong> Our learned team became decent at “not losing too badly,” but not at scoring. Looking back, it is obvious: our setup implicitly rewarded survival more than risk‑taking. The AI optimized exactly what we asked for, not what we wished for.</li>
+<li><strong>Progress is often incremental.</strong> Going from 0–22 to 0–5 is not a Hollywood story. It is much more typical of real AI work: incremental, imperfect, but undeniably moving in the right direction.</li>
+</ul>
+<h2 id="seeing-todays-ai-through-a-1999-lens">Seeing today’s AI through a 1999 lens<a hidden class="anchor" aria-hidden="true" href="#seeing-todays-ai-through-a-1999-lens">#</a></h2>
+<p>Fast‑forward to today. We talk about large language models, retrieval‑augmented generation, and reinforcement learning from human feedback. We can rent, in minutes, more compute than our lab had access to in an entire semester. We have libraries that hide the complexity of distributed training behind a few configuration flags.</p>
+<p>From the outside, it all looks very different from a late‑90s computer lab full of beige boxes. But the experience in 1999 quietly shaped how I think about AI now:</p>
+<ul>
+<li>When I see a model behave “safely but uselessly,” I hear the echo of our over‑defensive soccer agents.</li>
+<li>When someone says “it’s just a matter of compute,” I remember how hard it was to squeeze more learning out of our month‑long run.</li>
+<li>When people are surprised that an AI system does exactly what its reward structure encourages, I think of our 0–5 and smile.</li>
+</ul>
+<p>We did not change the world with that project. But somewhere between that first 0–22 and the final 0–5, I learned that AI is not magic. It is a long, messy negotiation between algorithms, data, compute, and the real‑world goals we try—often clumsily—to encode.</p>
+<p>And that realization has stayed with me, through every new wave of AI hype since.</p>
+<hr>
+<p>Images sourced from Wikipedia and public online archives, used here for illustrative and non‑commercial purposes.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://garywong.pro/tags/ai/">AI</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://garywong.pro/posts/when-a-design-template-scales-undocumented-compromise/">
+    <span class="title">Next »</span>
+    <br>
+    <span>When a Design Template Scales Undocumented Compromise</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share From 0–22 to 0–5: Learning AI the Hard Way in 1999 on x"
+            href="https://x.com/intent/tweet/?text=From%200%e2%80%9322%20to%200%e2%80%935%3a%20Learning%20AI%20the%20Hard%20Way%20in%201999&amp;url=https%3a%2f%2fgarywong.pro%2fposts%2frobocup-1999-fyp%2f&amp;hashtags=ai">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share From 0–22 to 0–5: Learning AI the Hard Way in 1999 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fgarywong.pro%2fposts%2frobocup-1999-fyp%2f&amp;title=From%200%e2%80%9322%20to%200%e2%80%935%3a%20Learning%20AI%20the%20Hard%20Way%20in%201999&amp;summary=From%200%e2%80%9322%20to%200%e2%80%935%3a%20Learning%20AI%20the%20Hard%20Way%20in%201999&amp;source=https%3a%2f%2fgarywong.pro%2fposts%2frobocup-1999-fyp%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share From 0–22 to 0–5: Learning AI the Hard Way in 1999 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fgarywong.pro%2fposts%2frobocup-1999-fyp%2f&title=From%200%e2%80%9322%20to%200%e2%80%935%3a%20Learning%20AI%20the%20Hard%20Way%20in%201999">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share From 0–22 to 0–5: Learning AI the Hard Way in 1999 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fgarywong.pro%2fposts%2frobocup-1999-fyp%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share From 0–22 to 0–5: Learning AI the Hard Way in 1999 on whatsapp"
+            href="https://api.whatsapp.com/send?text=From%200%e2%80%9322%20to%200%e2%80%935%3a%20Learning%20AI%20the%20Hard%20Way%20in%201999%20-%20https%3a%2f%2fgarywong.pro%2fposts%2frobocup-1999-fyp%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share From 0–22 to 0–5: Learning AI the Hard Way in 1999 on telegram"
+            href="https://telegram.me/share/url?text=From%200%e2%80%9322%20to%200%e2%80%935%3a%20Learning%20AI%20the%20Hard%20Way%20in%201999&amp;url=https%3a%2f%2fgarywong.pro%2fposts%2frobocup-1999-fyp%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share From 0–22 to 0–5: Learning AI the Hard Way in 1999 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=From%200%e2%80%9322%20to%200%e2%80%935%3a%20Learning%20AI%20the%20Hard%20Way%20in%201999&u=https%3a%2f%2fgarywong.pro%2fposts%2frobocup-1999-fyp%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://garywong.pro/">Gary Wong&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
