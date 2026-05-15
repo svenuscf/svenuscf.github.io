@@ -6,8 +6,57 @@
     <description>Recent content in Tags on Gary Wong&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://garywong.pro/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Containerlab</title>
+      <link>https://garywong.pro/tags/containerlab/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/containerlab/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cumulus</title>
+      <link>https://garywong.pro/tags/cumulus/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/cumulus/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Evpn</title>
+      <link>https://garywong.pro/tags/evpn/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/evpn/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>FRR</title>
+      <link>https://garywong.pro/tags/frr/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/frr/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lab</title>
+      <link>https://garywong.pro/tags/lab/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/lab/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Networking</title>
+      <link>https://garywong.pro/tags/networking/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/networking/</guid>
+      <description>Posts about data centre, SD-WAN, automation, and network architecture.</description>
+    </item>
+    <item>
+      <title>Vxlan</title>
+      <link>https://garywong.pro/tags/vxlan/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/vxlan/</guid>
+      <description></description>
+    </item>
     <item>
       <title>AI</title>
       <link>https://garywong.pro/tags/ai/</link>
@@ -16,38 +65,10 @@
       <description>Posts related to Artificial Intelligence, LLMs, and automation in networking.</description>
     </item>
     <item>
-      <title>Networking</title>
-      <link>https://garywong.pro/tags/networking/</link>
-      <pubDate>Wed, 11 Mar 2026 22:10:00 +1100</pubDate>
-      <guid>https://garywong.pro/tags/networking/</guid>
-      <description>Posts about data centre, SD-WAN, automation, and network architecture.</description>
-    </item>
-    <item>
       <title>Arista</title>
       <link>https://garywong.pro/tags/arista/</link>
       <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/tags/arista/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Containerlab</title>
-      <link>https://garywong.pro/tags/containerlab/</link>
-      <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://garywong.pro/tags/containerlab/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Evpn</title>
-      <link>https://garywong.pro/tags/evpn/</link>
-      <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://garywong.pro/tags/evpn/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Lab</title>
-      <link>https://garywong.pro/tags/lab/</link>
-      <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://garywong.pro/tags/lab/</guid>
       <description></description>
     </item>
     <item>
@@ -174,13 +195,6 @@
       <link>https://garywong.pro/tags/nexus9000/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/tags/nexus9000/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Vxlan</title>
-      <link>https://garywong.pro/tags/vxlan/</link>
-      <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://garywong.pro/tags/vxlan/</guid>
       <description></description>
     </item>
     <item>
