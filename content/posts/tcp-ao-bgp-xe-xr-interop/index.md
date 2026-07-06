@@ -1,8 +1,7 @@
 +++
 title = "TCP-AO BGP Interop Between IOS-XE and IOS-XR"
-date = 2026-07-06T07:19:00+10:00
-draft = false
-tags = ["networking", "bgp", "security", "cisco"]
+date = 2026-06-06T07:19:00+10:00
+tags = ["networking"]
 summary = "Lab note on getting BGP with TCP Authentication Option (TCP-AO) working between Cisco IOS-XE and IOS-XR, and the small details that blocked interop."
 description = "Technical lab note documenting a working TCP-AO BGP interop configuration between Catalyst 8000v (IOS-XE 26.1.1) and XR9kv (IOS-XR 7.11.21), including algorithm choice, key-string handling, and include-tcp-options behavior."
 +++

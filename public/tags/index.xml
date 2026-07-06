@@ -6,35 +6,14 @@
     <description>Recent content in Tags on Gary Wong&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Jul 2026 07:19:00 +1000</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jun 2026 07:19:00 +1000</lastBuildDate>
     <atom:link href="https://garywong.pro/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Bgp</title>
-      <link>https://garywong.pro/tags/bgp/</link>
-      <pubDate>Mon, 06 Jul 2026 07:19:00 +1000</pubDate>
-      <guid>https://garywong.pro/tags/bgp/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cisco</title>
-      <link>https://garywong.pro/tags/cisco/</link>
-      <pubDate>Mon, 06 Jul 2026 07:19:00 +1000</pubDate>
-      <guid>https://garywong.pro/tags/cisco/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Networking</title>
       <link>https://garywong.pro/tags/networking/</link>
-      <pubDate>Mon, 06 Jul 2026 07:19:00 +1000</pubDate>
+      <pubDate>Sat, 06 Jun 2026 07:19:00 +1000</pubDate>
       <guid>https://garywong.pro/tags/networking/</guid>
       <description>Posts about data centre, SD-WAN, automation, and network architecture.</description>
-    </item>
-    <item>
-      <title>Security</title>
-      <link>https://garywong.pro/tags/security/</link>
-      <pubDate>Mon, 06 Jul 2026 07:19:00 +1000</pubDate>
-      <guid>https://garywong.pro/tags/security/</guid>
-      <description></description>
     </item>
     <item>
       <title>Containerlab</title>
@@ -153,6 +132,13 @@
       <link>https://garywong.pro/tags/ansible/</link>
       <pubDate>Sun, 01 Sep 2024 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/tags/ansible/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cisco</title>
+      <link>https://garywong.pro/tags/cisco/</link>
+      <pubDate>Sun, 01 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>https://garywong.pro/tags/cisco/</guid>
       <description></description>
     </item>
     <item>
