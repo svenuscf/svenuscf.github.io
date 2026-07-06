@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://garywong.pro/tags/bgp/</loc>
+    <lastmod>2026-07-06T07:19:00+10:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/cisco/</loc>
+    <lastmod>2026-07-06T07:19:00+10:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/</loc>
+    <lastmod>2026-07-06T07:19:00+10:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/networking/</loc>
+    <lastmod>2026-07-06T07:19:00+10:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/posts/</loc>
+    <lastmod>2026-07-06T07:19:00+10:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/security/</loc>
+    <lastmod>2026-07-06T07:19:00+10:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/tags/</loc>
+    <lastmod>2026-07-06T07:19:00+10:00</lastmod>
+  </url><url>
+    <loc>https://garywong.pro/posts/tcp-ao-bgp-xe-xr-interop/</loc>
+    <lastmod>2026-07-06T07:19:00+10:00</lastmod>
+  </url><url>
     <loc>https://garywong.pro/tags/containerlab/</loc>
     <lastmod>2026-05-15T00:00:00+00:00</lastmod>
   </url><url>
@@ -17,19 +41,7 @@
     <loc>https://garywong.pro/tags/frr/</loc>
     <lastmod>2026-05-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://garywong.pro/</loc>
-    <lastmod>2026-05-15T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://garywong.pro/tags/lab/</loc>
-    <lastmod>2026-05-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://garywong.pro/tags/networking/</loc>
-    <lastmod>2026-05-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://garywong.pro/posts/</loc>
-    <lastmod>2026-05-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://garywong.pro/tags/</loc>
     <lastmod>2026-05-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://garywong.pro/tags/vxlan/</loc>
@@ -90,9 +102,6 @@
     <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://garywong.pro/posts/automating-cisco-device-upgrades-ansible/</loc>
-    <lastmod>2024-09-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://garywong.pro/tags/cisco/</loc>
     <lastmod>2024-09-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://garywong.pro/tags/ios-xe/</loc>

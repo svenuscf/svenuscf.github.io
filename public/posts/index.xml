@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Gary Wong&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Jul 2026 07:19:00 +1000</lastBuildDate>
     <atom:link href="https://garywong.pro/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TCP-AO BGP Interop Between IOS-XE and IOS-XR</title>
+      <link>https://garywong.pro/posts/tcp-ao-bgp-xe-xr-interop/</link>
+      <pubDate>Mon, 06 Jul 2026 07:19:00 +1000</pubDate>
+      <guid>https://garywong.pro/posts/tcp-ao-bgp-xe-xr-interop/</guid>
+      <description>Technical lab note documenting a working TCP-AO BGP interop configuration between Catalyst 8000v (IOS-XE 26.1.1) and XR9kv (IOS-XR 7.11.21), including algorithm choice, key-string handling, and include-tcp-options behavior.</description>
+    </item>
     <item>
       <title>Cumulus EVPN-VXLAN Lab — Built Fast with Containerlab</title>
       <link>https://garywong.pro/posts/cumulus-evpn-vxlan-lab/</link>
