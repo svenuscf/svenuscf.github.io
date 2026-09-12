@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>EVE-NG on Gary Wong&#39;s Blog</title>
+    <link>https://garywong.pro/tags/eve-ng/</link>
+    <description>Recent content in EVE-NG on Gary Wong&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Sep 2026 14:00:00 +1000</lastBuildDate>
+    <atom:link href="https://garywong.pro/tags/eve-ng/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I Described the Fabric Once—Then AI Built It on SONiC and Cumulus</title>
+      <link>https://garywong.pro/posts/one-fabric-two-network-operating-systems-ai-mcp/</link>
+      <pubDate>Sat, 12 Sep 2026 14:00:00 +1000</pubDate>
+      <guid>https://garywong.pro/posts/one-fabric-two-network-operating-systems-ai-mcp/</guid>
+      <description>A personal EVE-NG experiment using Codex, Cursor, and MCP to turn one EVPN-VXLAN design intent into validated SONiC and Cumulus implementations.</description>
+    </item>
+  </channel>
+</rss>

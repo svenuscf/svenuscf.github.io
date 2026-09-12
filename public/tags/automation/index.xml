@@ -6,8 +6,15 @@
     <description>Recent content in Automation on Gary Wong&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 12 Sep 2026 14:00:00 +1000</lastBuildDate>
     <atom:link href="https://garywong.pro/tags/automation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I Described the Fabric Once—Then AI Built It on SONiC and Cumulus</title>
+      <link>https://garywong.pro/posts/one-fabric-two-network-operating-systems-ai-mcp/</link>
+      <pubDate>Sat, 12 Sep 2026 14:00:00 +1000</pubDate>
+      <guid>https://garywong.pro/posts/one-fabric-two-network-operating-systems-ai-mcp/</guid>
+      <description>A personal EVE-NG experiment using Codex, Cursor, and MCP to turn one EVPN-VXLAN design intent into validated SONiC and Cumulus implementations.</description>
+    </item>
     <item>
       <title>Stop Writing CLI — Start Validating Design</title>
       <link>https://garywong.pro/posts/stop-writing-cli-start-validating-design/</link>

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>I Described the Fabric Once—Then AI Built It on SONiC and Cumulus | Gary Wong&#39;s Blog</title>
+<meta name="keywords" content="networking, AI, MCP, EVPN, VXLAN, SONiC, Cumulus, EVE-NG, automation">
+<meta name="description" content="A personal EVE-NG experiment using Codex, Cursor, and MCP to turn one EVPN-VXLAN design intent into validated SONiC and Cumulus implementations.">
+<meta name="author" content="Gary Wong">
+<link rel="canonical" href="https://garywong.pro/posts/one-fabric-two-network-operating-systems-ai-mcp/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.08f90dfa5269e38cdaa4a12e9d69f743157ab723e3ba201ae48c64a9b878532d.css" integrity="sha256-CPkN&#43;lJp44zapKEunWn3QxV6tyPjuiAa5Ixkqbh4Uy0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://garywong.pro/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://garywong.pro/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://garywong.pro/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://garywong.pro/apple-touch-icon.png">
+<link rel="mask-icon" href="https://garywong.pro/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://garywong.pro/posts/one-fabric-two-network-operating-systems-ai-mcp/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://garywong.pro/posts/one-fabric-two-network-operating-systems-ai-mcp/">
+  <meta property="og:site_name" content="Gary Wong&#39;s Blog">
+  <meta property="og:title" content="I Described the Fabric Once—Then AI Built It on SONiC and Cumulus">
+  <meta property="og:description" content="A personal EVE-NG experiment using Codex, Cursor, and MCP to turn one EVPN-VXLAN design intent into validated SONiC and Cumulus implementations.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-09-12T14:00:00+10:00">
+    <meta property="article:modified_time" content="2026-09-12T14:00:00+10:00">
+    <meta property="article:tag" content="Networking">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="MCP">
+    <meta property="article:tag" content="EVPN">
+    <meta property="article:tag" content="VXLAN">
+    <meta property="article:tag" content="SONiC">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="I Described the Fabric Once—Then AI Built It on SONiC and Cumulus">
+  <meta name="twitter:description" content="A personal EVE-NG experiment using Codex, Cursor, and MCP to turn one EVPN-VXLAN design intent into validated SONiC and Cumulus implementations.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://garywong.pro/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "I Described the Fabric Once—Then AI Built It on SONiC and Cumulus",
+      "item": "https://garywong.pro/posts/one-fabric-two-network-operating-systems-ai-mcp/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "I Described the Fabric Once—Then AI Built It on SONiC and Cumulus",
+  "name": "I Described the Fabric Once—Then AI Built It on SONiC and Cumulus",
+  "description": "A personal EVE-NG experiment using Codex, Cursor, and MCP to turn one EVPN-VXLAN design intent into validated SONiC and Cumulus implementations.",
+  "keywords": [
+    "networking", "AI", "MCP", "EVPN", "VXLAN", "SONiC", "Cumulus", "EVE-NG", "automation"
+  ],
+  "articleBody": "I have not been updating this blog much since starting my new role. A new environment brings a different rhythm, and most of my energy has gone into listening, learning, and understanding new challenges.\nBut I have continued building things in my personal lab.\nOne weekend, I opened EVE-NG and returned to a question that has followed me through several automation projects:\nWhat if I describe the network once, then ask an AI agent to build it on two different network operating systems?\nNot generate two piles of CLI. Build the fabric, inspect what actually happened, fix what does not match the intent, and leave behind enough evidence to reproduce it.\nThat became this experiment.\nEverything described here was built independently in my personal EVE-NG environment from public product documentation. It does not represent an employer, customer, or production network.\nThe challenge I gave the agent I started with a four-switch fabric: two spines and two leaves.\nThe first version ran SONiC Enterprise. After it was working, I shut that lab down and recreated the same logical design on NVIDIA Cumulus Linux.\nThe brief was deliberately written as design intent:\nBuild a two-spine, two-leaf EVPN-VXLAN fabric. Use eBGP unnumbered between every leaf and spine. Carry IPv4 routes over IPv6 link-local next hops. Use both spines as equal-cost paths. Create two tenant VRFs. Give each tenant two VLANs and one L3 VNI. Use distributed anycast gateways on both leaves. Validate the result and save the final configurations. The topology and expected forwarding behavior stayed constant. The syntax did not.\nOn SONiC, the agent worked through sonic-cli. On Cumulus, it used NVUE and FRR. My intention was not to make one platform imitate the configuration structure of the other. I wanted each platform to express the same design in its native way.\nEVE-NG supplied the devices. MCP supplied the boundary. I have previously written about moving labs to Containerlab. I still enjoy that workflow, especially when a useful container image is available.\nThis experiment needed virtual network appliances and their native management experience, so EVE-NG was the right runtime. I cabled the topology there and left the operational workflow to Codex, Cursor, and MCP.\nThe roles were clear:\nEVE-NG ran the topology. I defined the design, scope, and acceptance criteria. Codex and Cursor interpreted the request and reasoned over live results. MCP exposed controlled discovery, configuration, and verification actions. SONiC and Cumulus remained the systems of record for their own state. MCP was useful because it turned the interaction into more than a chat window connected to SSH. The workflow could distinguish between reading state, preparing configuration, applying it, saving it, and collecting evidence.\nThat boundary also made the scope explicit. Four switches were in scope. The simulated external router was not. When I mentioned a host-facing interface, the agent could configure the leaf side without wandering into a device I had excluded.\nThe agent began by looking The first useful action was not configuration. It was discovery.\nThe agent connected to all four nodes and answered a few basic questions:\nWhich software and release was running? What were the actual hostnames? Which interfaces existed? Which ports connected each leaf to each spine? Was management isolated from the default routing table? Was there already configuration worth preserving? This sounds routine, but it changes the quality of the work. A design request always contains assumptions. Discovery turns those assumptions into observed facts.\nOn the SONiC lab, this included standardising the interface display so the port names matched the way I wanted to operate the switches. On the Cumulus lab, it confirmed that eth0 was already using the management VRF and that the fabric ports were initially clean.\nOnly then did the agent turn the architecture brief into candidate configuration.\nTwo NOSs, one intended outcome The underlay used a different private ASN per switch and eBGP unnumbered on every fabric link. Loopbacks served as router IDs and VTEP addresses.\nThe overlay contained:\nTwo tenant VRFs Four VLANs Four L2 VNIs Two L3 VNIs A shared anycast gateway for each subnet A common anycast router MAC ARP and ND suppression There was no EVPN multihoming in this version. Each endpoint attachment was single-homed, so there was no Ethernet Segment Identifier to configure.\nThe SONiC and Cumulus command models looked very different. Yet the questions used to judge them were identical:\nAre all underlay peers established? Are all EVPN peers established? Can each leaf reach the other VTEP? Does the route use both spines? Are the expected VNIs operational? Is each L3 VNI attached to the correct tenant VRF? Are the gateway addresses present on both leaves? Is the final state saved? That common checklist became the real portability layer.\nEverything was green—except the forwarding path The most interesting moment came after the Cumulus configuration was applied.\nEvery fabric interface was up. Every IPv4-unicast BGP session was established. Every EVPN session was established. The VNIs appeared. At first glance, the job looked complete.\nThen the agent checked the route to the remote VTEP.\nThere was only one next hop.\nBoth spines advertised reachability, but the paths contained different spine ASNs. Without BGP multipath relaxation, the leaf selected one path instead of installing both.\nThe agent found the mismatch, enabled multipath relaxation across the fabric, saved the change, and checked again.\nRemote VTEP /32 via IPv6 link-local next hop on swp1 via IPv6 link-local next hop on swp2 Now the forwarding table matched the original intent: two equal-cost paths, one through each spine.\nThis small discovery captured the point of the whole exercise.\nA configuration can be accepted. Every session can be established. The design can still be wrong.\nIf the task had ended at “the commands succeeded,” I would have missed the problem.\nHow an IPv4 packet uses an IPv6 next hop The unnumbered underlay can look strange the first time you inspect it.\nThe tenant packet is IPv4. The VTEP addresses are IPv4. Yet the route to the remote VTEP points to an IPv6 link-local address.\nThe two address families have different jobs:\nA host sends an IPv4 packet to its anycast gateway on Leaf 1. Leaf 1 performs the tenant VRF lookup and selects the remote VTEP. The IPv4 route to that VTEP resolves over an IPv6 link-local neighbour on the chosen fabric interface. Leaf 1 encapsulates the tenant frame in VXLAN. The routed underlay transports the outer packet through either spine. Leaf 2 removes the VXLAN header, performs the destination-side forwarding, and sends the original IPv4 packet toward the endpoint. The IPv4 destination never turns into IPv6. IPv6 link-local addressing identifies the directly connected underlay adjacency used to reach the IPv4 VTEP.\nBecause both spine paths were installed, the fabric could use either adjacency.\nSymmetric IRB was visible before hosts were attached The lab had four operational L2 VNIs and two operational L3 VNIs. Each leaf saw the other as a remote VTEP, and the tenant VRFs had the expected distributed gateways.\nThat proved the basic EVPN control plane and VXLAN tunnel model were in place.\nBut I had deliberately told the agent to ignore the simulated external router. No active endpoints were generating tenant traffic. That meant there were limits to what could honestly be claimed:\nNo remote host MAC/IP meant no meaningful Type-2 endpoint proof. No cross-subnet host flow meant no end-to-end symmetric-IRB packet capture. The L3 VNIs and distributed gateways were ready, but an endpoint test would still be needed to prove the complete data path. I liked that the final report said so.\nAutomation evidence should show both what was proven and what remains untested. A long list of green checks is less useful if it quietly ignores the missing test conditions.\nThe output was evidence, not a terminal transcript At the end, the agent left behind:\nA discovered topology A short architecture record The final configuration for every switch Platform-specific restoration commands BGP and EVPN post-checks VNI state ECMP proof for the remote VTEPs A clear note about the endpoint tests still outstanding This changed the experience of operating the lab.\nNormally, I finish an experiment with several terminal windows, a few screenshots, and the vague belief that I will document it later. This time, documentation was produced as part of completing the change.\nThe record connected three things:\nWhat I asked for → What the platforms received → What the network proved\nThat is much closer to how I want network engineering work to feel.\nWhat AI changed for me The agent handled the repetitive parts well:\nQuerying four devices in parallel Translating intent into two configuration models Comparing expected and observed state Repeating validation consistently Preserving configurations and evidence Following a problem from symptom to correction I still made the architectural decisions. I chose the topology, routing model, tenants, anycast design, boundaries, and success criteria. When management access could have been affected, I decided how much risk was acceptable.\nThe useful shift was not “AI writes network CLI.”\nIt was this:\nI spent more time describing correct behavior and less time transcribing syntax.\nThat is a much more interesting use of an AI agent for network engineering.\nWhat would have to change for production This was a personal lab, and I treated it as one.\nA production implementation would need stronger controls around:\nIdentity and role-based access Secrets storage and rotation Approved command and API scopes Candidate configuration review Change windows and governance Audit logs Automated rollback Independent pre-change and post-change policy checks The lab does not prove that an AI agent should be given unrestricted access to a production network.\nIt does show that an agent can operate inside a defined boundary, translate intent into native platform actions, and validate the result against measurable outcomes.\nThat is enough to make the next experiment worthwhile.\nWhat comes next The next step is to move the shared fabric definition into a small vendor-neutral data model.\nInstead of restating the design in conversation, I want to define the nodes, links, ASNs, loopbacks, tenants, VLANs, VNIs, and validation rules as structured intent. The platform adapters can change while the acceptance tests remain stable.\nI also want to extend the lab with:\nEndpoint-driven EVPN Type-2 learning Symmetric-IRB packet captures Type-5 prefix advertisement Spine and link failure tests Deliberate configuration drift Automated rollback exercises A third NOS using the same intent The question is no longer whether an AI agent can produce CLI.\nThe better question is:\nCan one design intent survive different platforms and still produce the same provable network behavior?\nFor this small fabric, the answer is beginning to look like yes.\n",
+  "wordCount" : "1763",
+  "inLanguage": "en",
+  "datePublished": "2026-09-12T14:00:00+10:00",
+  "dateModified": "2026-09-12T14:00:00+10:00",
+  "author":{
+    "@type": "Person",
+    "name": "Gary Wong"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://garywong.pro/posts/one-fabric-two-network-operating-systems-ai-mcp/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Gary Wong's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://garywong.pro/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://garywong.pro/" accesskey="h" title="Gary Wong&#39;s Blog (Alt + H)">Gary Wong&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://garywong.pro/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://garywong.pro/tags/networking/" title="Networking">
+                    <span>Networking</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://garywong.pro/tags/ai/" title="AI">
+                    <span>AI</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://garywong.pro/tags/guqin/" title="Guqin">
+                    <span>Guqin</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://garywong.pro/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://garywong.pro/">Home</a>&nbsp;»&nbsp;<a href="https://garywong.pro/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      I Described the Fabric Once—Then AI Built It on SONiC and Cumulus
+    </h1>
+    <div class="post-description">
+      A personal EVE-NG experiment using Codex, Cursor, and MCP to turn one EVPN-VXLAN design intent into validated SONiC and Cumulus implementations.
+    </div>
+    <div class="post-meta"><span title='2026-09-12 14:00:00 +1000 AEST'>September 12, 2026</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;·&nbsp;<span>Gary Wong</span>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#the-challenge-i-gave-the-agent" aria-label="The challenge I gave the agent">The challenge I gave the agent</a></li>
+                <li>
+                    <a href="#eve-ng-supplied-the-devices-mcp-supplied-the-boundary" aria-label="EVE-NG supplied the devices. MCP supplied the boundary.">EVE-NG supplied the devices. MCP supplied the boundary.</a></li>
+                <li>
+                    <a href="#the-agent-began-by-looking" aria-label="The agent began by looking">The agent began by looking</a></li>
+                <li>
+                    <a href="#two-noss-one-intended-outcome" aria-label="Two NOSs, one intended outcome">Two NOSs, one intended outcome</a></li>
+                <li>
+                    <a href="#everything-was-greenexcept-the-forwarding-path" aria-label="Everything was green—except the forwarding path">Everything was green—except the forwarding path</a></li>
+                <li>
+                    <a href="#how-an-ipv4-packet-uses-an-ipv6-next-hop" aria-label="How an IPv4 packet uses an IPv6 next hop">How an IPv4 packet uses an IPv6 next hop</a></li>
+                <li>
+                    <a href="#symmetric-irb-was-visible-before-hosts-were-attached" aria-label="Symmetric IRB was visible before hosts were attached">Symmetric IRB was visible before hosts were attached</a></li>
+                <li>
+                    <a href="#the-output-was-evidence-not-a-terminal-transcript" aria-label="The output was evidence, not a terminal transcript">The output was evidence, not a terminal transcript</a></li>
+                <li>
+                    <a href="#what-ai-changed-for-me" aria-label="What AI changed for me">What AI changed for me</a></li>
+                <li>
+                    <a href="#what-would-have-to-change-for-production" aria-label="What would have to change for production">What would have to change for production</a></li>
+                <li>
+                    <a href="#what-comes-next" aria-label="What comes next">What comes next</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>I have not been updating this blog much since starting my new role. A new environment brings a different rhythm, and most of my energy has gone into listening, learning, and understanding new challenges.</p>
+<p>But I have continued building things in my personal lab.</p>
+<p>One weekend, I opened EVE-NG and returned to a question that has followed me through several automation projects:</p>
+<blockquote>
+<p><strong>What if I describe the network once, then ask an AI agent to build it on two different network operating systems?</strong></p>
+</blockquote>
+<p>Not generate two piles of CLI. Build the fabric, inspect what actually happened, fix what does not match the intent, and leave behind enough evidence to reproduce it.</p>
+<p>That became this experiment.</p>
+<p>Everything described here was built independently in my personal EVE-NG environment from public product documentation. It does not represent an employer, customer, or production network.</p>
+<hr>
+<h2 id="the-challenge-i-gave-the-agent">The challenge I gave the agent<a hidden class="anchor" aria-hidden="true" href="#the-challenge-i-gave-the-agent">#</a></h2>
+<p>I started with a four-switch fabric: two spines and two leaves.</p>
+<p>The first version ran <strong>SONiC Enterprise</strong>. After it was working, I shut that lab down and recreated the same logical design on <strong>NVIDIA Cumulus Linux</strong>.</p>
+<p><img alt="A two-spine, two-leaf EVPN-VXLAN topology implemented on SONiC and Cumulus" loading="lazy" src="/posts/one-fabric-two-network-operating-systems-ai-mcp/lab-topology.svg"></p>
+<p>The brief was deliberately written as design intent:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Build a two-spine, two-leaf EVPN-VXLAN fabric.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Use eBGP unnumbered between every leaf and spine.
+</span></span><span style="display:flex;"><span>Carry IPv4 routes over IPv6 link-local next hops.
+</span></span><span style="display:flex;"><span>Use both spines as equal-cost paths.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Create two tenant VRFs.
+</span></span><span style="display:flex;"><span>Give each tenant two VLANs and one L3 VNI.
+</span></span><span style="display:flex;"><span>Use distributed anycast gateways on both leaves.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Validate the result and save the final configurations.
+</span></span></code></pre></div><p>The topology and expected forwarding behavior stayed constant. The syntax did not.</p>
+<p>On SONiC, the agent worked through <strong>sonic-cli</strong>. On Cumulus, it used <strong>NVUE</strong> and FRR. My intention was not to make one platform imitate the configuration structure of the other. I wanted each platform to express the same design in its native way.</p>
+<hr>
+<h2 id="eve-ng-supplied-the-devices-mcp-supplied-the-boundary">EVE-NG supplied the devices. MCP supplied the boundary.<a hidden class="anchor" aria-hidden="true" href="#eve-ng-supplied-the-devices-mcp-supplied-the-boundary">#</a></h2>
+<p>I have previously written about moving labs to Containerlab. I still enjoy that workflow, especially when a useful container image is available.</p>
+<p>This experiment needed virtual network appliances and their native management experience, so EVE-NG was the right runtime. I cabled the topology there and left the operational workflow to Codex, Cursor, and MCP.</p>
+<p><img alt="Workflow from design intent through an AI agent and MCP to two network operating systems" loading="lazy" src="/posts/one-fabric-two-network-operating-systems-ai-mcp/intent-workflow.svg"></p>
+<p>The roles were clear:</p>
+<ul>
+<li><strong>EVE-NG</strong> ran the topology.</li>
+<li><strong>I</strong> defined the design, scope, and acceptance criteria.</li>
+<li><strong>Codex and Cursor</strong> interpreted the request and reasoned over live results.</li>
+<li><strong>MCP</strong> exposed controlled discovery, configuration, and verification actions.</li>
+<li><strong>SONiC and Cumulus</strong> remained the systems of record for their own state.</li>
+</ul>
+<p>MCP was useful because it turned the interaction into more than a chat window connected to SSH. The workflow could distinguish between reading state, preparing configuration, applying it, saving it, and collecting evidence.</p>
+<p>That boundary also made the scope explicit. Four switches were in scope. The simulated external router was not. When I mentioned a host-facing interface, the agent could configure the leaf side without wandering into a device I had excluded.</p>
+<hr>
+<h2 id="the-agent-began-by-looking">The agent began by looking<a hidden class="anchor" aria-hidden="true" href="#the-agent-began-by-looking">#</a></h2>
+<p>The first useful action was not configuration. It was discovery.</p>
+<p>The agent connected to all four nodes and answered a few basic questions:</p>
+<ul>
+<li>Which software and release was running?</li>
+<li>What were the actual hostnames?</li>
+<li>Which interfaces existed?</li>
+<li>Which ports connected each leaf to each spine?</li>
+<li>Was management isolated from the default routing table?</li>
+<li>Was there already configuration worth preserving?</li>
+</ul>
+<p>This sounds routine, but it changes the quality of the work. A design request always contains assumptions. Discovery turns those assumptions into observed facts.</p>
+<p>On the SONiC lab, this included standardising the interface display so the port names matched the way I wanted to operate the switches. On the Cumulus lab, it confirmed that <strong>eth0</strong> was already using the management VRF and that the fabric ports were initially clean.</p>
+<p>Only then did the agent turn the architecture brief into candidate configuration.</p>
+<hr>
+<h2 id="two-noss-one-intended-outcome">Two NOSs, one intended outcome<a hidden class="anchor" aria-hidden="true" href="#two-noss-one-intended-outcome">#</a></h2>
+<p>The underlay used a different private ASN per switch and eBGP unnumbered on every fabric link. Loopbacks served as router IDs and VTEP addresses.</p>
+<p>The overlay contained:</p>
+<ul>
+<li>Two tenant VRFs</li>
+<li>Four VLANs</li>
+<li>Four L2 VNIs</li>
+<li>Two L3 VNIs</li>
+<li>A shared anycast gateway for each subnet</li>
+<li>A common anycast router MAC</li>
+<li>ARP and ND suppression</li>
+</ul>
+<p>There was no EVPN multihoming in this version. Each endpoint attachment was single-homed, so there was no Ethernet Segment Identifier to configure.</p>
+<p>The SONiC and Cumulus command models looked very different. Yet the questions used to judge them were identical:</p>
+<ul>
+<li>Are all underlay peers established?</li>
+<li>Are all EVPN peers established?</li>
+<li>Can each leaf reach the other VTEP?</li>
+<li>Does the route use both spines?</li>
+<li>Are the expected VNIs operational?</li>
+<li>Is each L3 VNI attached to the correct tenant VRF?</li>
+<li>Are the gateway addresses present on both leaves?</li>
+<li>Is the final state saved?</li>
+</ul>
+<p>That common checklist became the real portability layer.</p>
+<hr>
+<h2 id="everything-was-greenexcept-the-forwarding-path">Everything was green—except the forwarding path<a hidden class="anchor" aria-hidden="true" href="#everything-was-greenexcept-the-forwarding-path">#</a></h2>
+<p>The most interesting moment came after the Cumulus configuration was applied.</p>
+<p>Every fabric interface was up. Every IPv4-unicast BGP session was established. Every EVPN session was established. The VNIs appeared. At first glance, the job looked complete.</p>
+<p>Then the agent checked the route to the remote VTEP.</p>
+<p>There was only one next hop.</p>
+<p>Both spines advertised reachability, but the paths contained different spine ASNs. Without BGP multipath relaxation, the leaf selected one path instead of installing both.</p>
+<p>The agent found the mismatch, enabled multipath relaxation across the fabric, saved the change, and checked again.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Remote VTEP /32
+</span></span><span style="display:flex;"><span>  via IPv6 link-local next hop on swp1
+</span></span><span style="display:flex;"><span>  via IPv6 link-local next hop on swp2
+</span></span></code></pre></div><p>Now the forwarding table matched the original intent: two equal-cost paths, one through each spine.</p>
+<p>This small discovery captured the point of the whole exercise.</p>
+<blockquote>
+<p><strong>A configuration can be accepted. Every session can be established. The design can still be wrong.</strong></p>
+</blockquote>
+<p>If the task had ended at “the commands succeeded,” I would have missed the problem.</p>
+<hr>
+<h2 id="how-an-ipv4-packet-uses-an-ipv6-next-hop">How an IPv4 packet uses an IPv6 next hop<a hidden class="anchor" aria-hidden="true" href="#how-an-ipv4-packet-uses-an-ipv6-next-hop">#</a></h2>
+<p>The unnumbered underlay can look strange the first time you inspect it.</p>
+<p>The tenant packet is IPv4. The VTEP addresses are IPv4. Yet the route to the remote VTEP points to an IPv6 link-local address.</p>
+<p><img alt="Packet walk showing an IPv4 tenant packet crossing a VXLAN fabric over IPv6 link-local underlay next hops" loading="lazy" src="/posts/one-fabric-two-network-operating-systems-ai-mcp/packet-walk.svg"></p>
+<p>The two address families have different jobs:</p>
+<ol>
+<li>A host sends an IPv4 packet to its anycast gateway on Leaf 1.</li>
+<li>Leaf 1 performs the tenant VRF lookup and selects the remote VTEP.</li>
+<li>The IPv4 route to that VTEP resolves over an IPv6 link-local neighbour on the chosen fabric interface.</li>
+<li>Leaf 1 encapsulates the tenant frame in VXLAN.</li>
+<li>The routed underlay transports the outer packet through either spine.</li>
+<li>Leaf 2 removes the VXLAN header, performs the destination-side forwarding, and sends the original IPv4 packet toward the endpoint.</li>
+</ol>
+<p>The IPv4 destination never turns into IPv6. IPv6 link-local addressing identifies the directly connected underlay adjacency used to reach the IPv4 VTEP.</p>
+<p>Because both spine paths were installed, the fabric could use either adjacency.</p>
+<hr>
+<h2 id="symmetric-irb-was-visible-before-hosts-were-attached">Symmetric IRB was visible before hosts were attached<a hidden class="anchor" aria-hidden="true" href="#symmetric-irb-was-visible-before-hosts-were-attached">#</a></h2>
+<p>The lab had four operational L2 VNIs and two operational L3 VNIs. Each leaf saw the other as a remote VTEP, and the tenant VRFs had the expected distributed gateways.</p>
+<p>That proved the basic EVPN control plane and VXLAN tunnel model were in place.</p>
+<p>But I had deliberately told the agent to ignore the simulated external router. No active endpoints were generating tenant traffic. That meant there were limits to what could honestly be claimed:</p>
+<ul>
+<li>No remote host MAC/IP meant no meaningful Type-2 endpoint proof.</li>
+<li>No cross-subnet host flow meant no end-to-end symmetric-IRB packet capture.</li>
+<li>The L3 VNIs and distributed gateways were ready, but an endpoint test would still be needed to prove the complete data path.</li>
+</ul>
+<p>I liked that the final report said so.</p>
+<p>Automation evidence should show both what was proven and what remains untested. A long list of green checks is less useful if it quietly ignores the missing test conditions.</p>
+<hr>
+<h2 id="the-output-was-evidence-not-a-terminal-transcript">The output was evidence, not a terminal transcript<a hidden class="anchor" aria-hidden="true" href="#the-output-was-evidence-not-a-terminal-transcript">#</a></h2>
+<p>At the end, the agent left behind:</p>
+<ul>
+<li>A discovered topology</li>
+<li>A short architecture record</li>
+<li>The final configuration for every switch</li>
+<li>Platform-specific restoration commands</li>
+<li>BGP and EVPN post-checks</li>
+<li>VNI state</li>
+<li>ECMP proof for the remote VTEPs</li>
+<li>A clear note about the endpoint tests still outstanding</li>
+</ul>
+<p>This changed the experience of operating the lab.</p>
+<p>Normally, I finish an experiment with several terminal windows, a few screenshots, and the vague belief that I will document it later. This time, documentation was produced as part of completing the change.</p>
+<p>The record connected three things:</p>
+<blockquote>
+<p><strong>What I asked for → What the platforms received → What the network proved</strong></p>
+</blockquote>
+<p>That is much closer to how I want network engineering work to feel.</p>
+<hr>
+<h2 id="what-ai-changed-for-me">What AI changed for me<a hidden class="anchor" aria-hidden="true" href="#what-ai-changed-for-me">#</a></h2>
+<p>The agent handled the repetitive parts well:</p>
+<ul>
+<li>Querying four devices in parallel</li>
+<li>Translating intent into two configuration models</li>
+<li>Comparing expected and observed state</li>
+<li>Repeating validation consistently</li>
+<li>Preserving configurations and evidence</li>
+<li>Following a problem from symptom to correction</li>
+</ul>
+<p>I still made the architectural decisions. I chose the topology, routing model, tenants, anycast design, boundaries, and success criteria. When management access could have been affected, I decided how much risk was acceptable.</p>
+<p>The useful shift was not “AI writes network CLI.”</p>
+<p>It was this:</p>
+<blockquote>
+<p><strong>I spent more time describing correct behavior and less time transcribing syntax.</strong></p>
+</blockquote>
+<p>That is a much more interesting use of an AI agent for network engineering.</p>
+<hr>
+<h2 id="what-would-have-to-change-for-production">What would have to change for production<a hidden class="anchor" aria-hidden="true" href="#what-would-have-to-change-for-production">#</a></h2>
+<p>This was a personal lab, and I treated it as one.</p>
+<p>A production implementation would need stronger controls around:</p>
+<ul>
+<li>Identity and role-based access</li>
+<li>Secrets storage and rotation</li>
+<li>Approved command and API scopes</li>
+<li>Candidate configuration review</li>
+<li>Change windows and governance</li>
+<li>Audit logs</li>
+<li>Automated rollback</li>
+<li>Independent pre-change and post-change policy checks</li>
+</ul>
+<p>The lab does not prove that an AI agent should be given unrestricted access to a production network.</p>
+<p>It does show that an agent can operate inside a defined boundary, translate intent into native platform actions, and validate the result against measurable outcomes.</p>
+<p>That is enough to make the next experiment worthwhile.</p>
+<hr>
+<h2 id="what-comes-next">What comes next<a hidden class="anchor" aria-hidden="true" href="#what-comes-next">#</a></h2>
+<p>The next step is to move the shared fabric definition into a small vendor-neutral data model.</p>
+<p>Instead of restating the design in conversation, I want to define the nodes, links, ASNs, loopbacks, tenants, VLANs, VNIs, and validation rules as structured intent. The platform adapters can change while the acceptance tests remain stable.</p>
+<p>I also want to extend the lab with:</p>
+<ul>
+<li>Endpoint-driven EVPN Type-2 learning</li>
+<li>Symmetric-IRB packet captures</li>
+<li>Type-5 prefix advertisement</li>
+<li>Spine and link failure tests</li>
+<li>Deliberate configuration drift</li>
+<li>Automated rollback exercises</li>
+<li>A third NOS using the same intent</li>
+</ul>
+<p>The question is no longer whether an AI agent can produce CLI.</p>
+<p>The better question is:</p>
+<blockquote>
+<p><strong>Can one design intent survive different platforms and still produce the same provable network behavior?</strong></p>
+</blockquote>
+<p>For this small fabric, the answer is beginning to look like yes.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://garywong.pro/tags/networking/">Networking</a></li>
+      <li><a href="https://garywong.pro/tags/ai/">AI</a></li>
+      <li><a href="https://garywong.pro/tags/mcp/">MCP</a></li>
+      <li><a href="https://garywong.pro/tags/evpn/">EVPN</a></li>
+      <li><a href="https://garywong.pro/tags/vxlan/">VXLAN</a></li>
+      <li><a href="https://garywong.pro/tags/sonic/">SONiC</a></li>
+      <li><a href="https://garywong.pro/tags/cumulus/">Cumulus</a></li>
+      <li><a href="https://garywong.pro/tags/eve-ng/">EVE-NG</a></li>
+      <li><a href="https://garywong.pro/tags/automation/">Automation</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://garywong.pro/posts/tcp-ao-bgp-xe-xr-interop/">
+    <span class="title">Next »</span>
+    <br>
+    <span>TCP-AO BGP Interop Between IOS-XE and IOS-XR</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share I Described the Fabric Once—Then AI Built It on SONiC and Cumulus on x"
+            href="https://x.com/intent/tweet/?text=I%20Described%20the%20Fabric%20Once%e2%80%94Then%20AI%20Built%20It%20on%20SONiC%20and%20Cumulus&amp;url=https%3a%2f%2fgarywong.pro%2fposts%2fone-fabric-two-network-operating-systems-ai-mcp%2f&amp;hashtags=networking%2cAI%2cMCP%2cEVPN%2cVXLAN%2cSONiC%2cCumulus%2cEVE-NG%2cautomation">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share I Described the Fabric Once—Then AI Built It on SONiC and Cumulus on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fgarywong.pro%2fposts%2fone-fabric-two-network-operating-systems-ai-mcp%2f&amp;title=I%20Described%20the%20Fabric%20Once%e2%80%94Then%20AI%20Built%20It%20on%20SONiC%20and%20Cumulus&amp;summary=I%20Described%20the%20Fabric%20Once%e2%80%94Then%20AI%20Built%20It%20on%20SONiC%20and%20Cumulus&amp;source=https%3a%2f%2fgarywong.pro%2fposts%2fone-fabric-two-network-operating-systems-ai-mcp%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share I Described the Fabric Once—Then AI Built It on SONiC and Cumulus on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2fgarywong.pro%2fposts%2fone-fabric-two-network-operating-systems-ai-mcp%2f&title=I%20Described%20the%20Fabric%20Once%e2%80%94Then%20AI%20Built%20It%20on%20SONiC%20and%20Cumulus">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share I Described the Fabric Once—Then AI Built It on SONiC and Cumulus on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fgarywong.pro%2fposts%2fone-fabric-two-network-operating-systems-ai-mcp%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share I Described the Fabric Once—Then AI Built It on SONiC and Cumulus on whatsapp"
+            href="https://api.whatsapp.com/send?text=I%20Described%20the%20Fabric%20Once%e2%80%94Then%20AI%20Built%20It%20on%20SONiC%20and%20Cumulus%20-%20https%3a%2f%2fgarywong.pro%2fposts%2fone-fabric-two-network-operating-systems-ai-mcp%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share I Described the Fabric Once—Then AI Built It on SONiC and Cumulus on telegram"
+            href="https://telegram.me/share/url?text=I%20Described%20the%20Fabric%20Once%e2%80%94Then%20AI%20Built%20It%20on%20SONiC%20and%20Cumulus&amp;url=https%3a%2f%2fgarywong.pro%2fposts%2fone-fabric-two-network-operating-systems-ai-mcp%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share I Described the Fabric Once—Then AI Built It on SONiC and Cumulus on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=I%20Described%20the%20Fabric%20Once%e2%80%94Then%20AI%20Built%20It%20on%20SONiC%20and%20Cumulus&u=https%3a%2f%2fgarywong.pro%2fposts%2fone-fabric-two-network-operating-systems-ai-mcp%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://garywong.pro/">Gary Wong&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
