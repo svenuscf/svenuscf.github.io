@@ -226,6 +226,16 @@ That is much closer to how I want network engineering work to feel.
 
 ---
 
+## Reproduce the lab
+
+I published a sanitized companion repository containing the shared intent model, SONiC and Cumulus configurations, validation commands, selected expected output, diagrams, and an example MCP operating model:
+
+> **[intent-driven-evpn-vxlan-lab on GitHub](https://github.com/svenuscf/intent-driven-evpn-vxlan-lab)**
+
+The repository excludes management addressing, credentials, external peers, raw running configurations, and appliance images.
+
+---
+
 ## What AI changed for me
 
 The agent handled the repetitive parts well:
