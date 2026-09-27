@@ -1,0 +1,14 @@
+---
+description: Protect confidential work while writing about AI-assisted architecture and engineering
+alwaysApply: true
+---
+
+# Public writing about AI-assisted work
+
+- Treat this blog as public. Never include employer or customer names, internal tool names, screenshots, source code, project identifiers, delivery dates, schedules, topology details, addresses, credentials, incidents, or unpublished vendor decisions.
+- Write about reusable problem patterns, architecture decisions, and personal learning. Use generic examples or independently built personal-lab evidence instead of work artefacts.
+- Describe the context as a new role or professional experience unless Gary explicitly asks to name an employer. Naming an employer never permits disclosing its confidential information.
+- Do not imply that a personal lab, a generalized diagram, or an AI-assisted workflow represents a production environment.
+- Separate claims clearly: label reflections as experience, lab results as lab-validated, and production implications as considerations rather than proof.
+- Keep the human accountable: AI can organise, propose, compare, and help gather evidence; it does not own architecture approval, risk acceptance, or production change decisions.
+- Before publishing, scan every changed source and generated file for identifiers, credentials, management addresses, internal hostnames, customer references, localhost URLs, and live-reload scripts.

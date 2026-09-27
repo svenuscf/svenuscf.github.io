@@ -6,8 +6,15 @@
     <description>Recent content in Networking on Gary Wong&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Sep 2026 14:00:00 +1000</lastBuildDate>
+    <lastBuildDate>Sun, 27 Sep 2026 10:44:00 +1000</lastBuildDate>
     <atom:link href="https://garywong.pro/tags/networking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Changed the Shape of the Work, Not the Responsibility</title>
+      <link>https://garywong.pro/posts/ai-changed-the-shape-of-the-work/</link>
+      <pubDate>Sun, 27 Sep 2026 10:44:00 +1000</pubDate>
+      <guid>https://garywong.pro/posts/ai-changed-the-shape-of-the-work/</guid>
+      <description>A reflection on using AI-assisted workflows for planning, troubleshooting, cross-platform engineering, and architecture governance without delegating responsibility.</description>
+    </item>
     <item>
       <title>I Described the Fabric Once—Then AI Built It on SONiC and Cumulus</title>
       <link>https://garywong.pro/posts/one-fabric-two-network-operating-systems-ai-mcp/</link>

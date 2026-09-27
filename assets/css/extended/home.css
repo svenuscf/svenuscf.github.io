@@ -1,37 +1,38 @@
-/* Custom tweaks for homepage spacing on PaperMod */
+/* A light editorial layer on top of PaperMod. It preserves PaperMod's
+   accessible semantics and its dark-mode toggle. */
 
-/* Reduce the vertical space between the intro block and the post list */
-body.home .home-info,
-body.list.home .home-info {
-  margin-bottom: 0.4rem !important;
-  padding-bottom: 0 !important;
-}
+:root { --accent: #0e7490; --accent-strong: #075985; --accent-soft: #e0f2fe; --ink-muted: #52606d; --radius: 14px; }
+:root[data-theme="dark"] { --accent: #5eead4; --accent-strong: #99f6e4; --accent-soft: #12313a; --ink-muted: #aab7c4; }
 
-/* PaperMod uses a grid/flex gap on the main container – shrink it on Home */
-body.home main.main,
-body.list.home main.main {
-  gap: 0.3rem !important;   /* try 0.4rem later if you want it even tighter */
-}
+body { background-image: radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 7%, transparent), transparent 28rem); }
+.header { border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
+.logo a { letter-spacing: -0.04em; }
+#menu a { color: var(--secondary); font-size: 14px; font-weight: 600; }
+#menu a:hover, #menu .active { color: var(--primary); }
 
-/* Make sure the first card after the intro doesn't add extra top margin */
-body.home .home-info + .post-entry,
-body.home .home-info + section,
-body.list.home .home-info + .post-entry,
-body.list.home .home-info + section {
-  margin-top: 0.3rem !important;
-}
+.main:has(.home-info) { max-width: calc(1040px + var(--gap) * 2); }
+.home-info { min-height: auto; margin: 28px 0 36px; padding: clamp(28px, 5vw, 64px); overflow: hidden; border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border)); border-radius: 24px; background: radial-gradient(circle at 92% 12%, color-mix(in srgb, var(--accent) 28%, transparent), transparent 16rem), linear-gradient(135deg, var(--entry), color-mix(in srgb, var(--accent-soft) 40%, var(--entry))); box-shadow: 0 20px 50px color-mix(in srgb, var(--primary) 8%, transparent); }
+.home-info::after { position: absolute; right: -50px; bottom: -70px; width: 210px; height: 210px; border: 1px solid color-mix(in srgb, var(--accent) 42%, transparent); border-radius: 50%; content: ""; }
+.home-info__eyebrow { position: relative; z-index: 1; color: var(--accent-strong); font-size: 11px; font-weight: 800; letter-spacing: 0.14em; }
+.home-info .entry-header, .home-info .entry-content, .home-info .entry-footer, .home-info__topics { position: relative; z-index: 1; max-width: 720px; }
+.home-info .entry-header h1 { margin: 14px 0; font-size: clamp(2.15rem, 5vw, 4.25rem); line-height: 1.02; letter-spacing: -0.055em; }
+.home-info .entry-content { margin: 0; color: var(--ink-muted); font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.6; }
+.home-info__topics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.home-info__topics a { border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border)); border-radius: 999px; color: var(--primary); font-size: 13px; font-weight: 700; padding: 7px 12px; }
+.home-info__topics a:hover { background: var(--accent); border-color: var(--accent); color: var(--theme); }
+.home-info .entry-footer { margin-top: 12px; }
 
-/* Slightly tighten overall card spacing on the home page */
-body.home .post-entry,
-body.list.home .post-entry {
-  margin-top: 0.5rem !important;
-  margin-bottom: 0.5rem !important;
-}
+.home-info ~ .post-entry { margin: 0; min-height: 210px; padding: 28px; border-radius: 16px; box-shadow: 0 8px 20px color-mix(in srgb, var(--primary) 5%, transparent); transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease; }
+.home-info ~ .post-entry:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); box-shadow: 0 18px 36px color-mix(in srgb, var(--primary) 12%, transparent); transform: translateY(-4px); }
+.home-info ~ .post-entry:active { transform: translateY(-1px); }
+.home-info ~ .post-entry .entry-header h2 { font-size: clamp(1.25rem, 2.4vw, 1.65rem); letter-spacing: -0.03em; }
+.home-info ~ .post-entry .entry-content { color: var(--ink-muted); font-size: 14px; -webkit-line-clamp: 3; }
+.post-title, .page-header h1 { letter-spacing: -0.045em; }
+.post-content { font-size: 17px; line-height: 1.75; }
+.post-content h2 { letter-spacing: -0.035em; }
+.post-content blockquote { border-inline-start-color: var(--accent); color: var(--secondary); }
+.post-content a { color: var(--accent-strong); }
 
-/* Remove "featured post" spacing when homeInfoParams is used */
-.first-entry {
-    margin-top: 1.5rem !important;
-    margin-bottom: 1rem !important;
-    grid-column: auto !important;   /* prevents stretching */
-}
-
+@media (min-width: 760px) { .main:has(.home-info) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; } .main:has(.home-info) .home-info, .main:has(.home-info) .page-footer { grid-column: 1 / -1; } }
+@media (max-width: 759px) { #menu li + li { margin-inline-start: 16px; } .home-info { margin-top: 10px; border-radius: 18px; } .home-info ~ .post-entry { margin-bottom: 14px; } }
+@media (prefers-reduced-motion: reduce) { .home-info ~ .post-entry { transition: none; } }

@@ -19,8 +19,8 @@ enableRobotsTXT = true
   ShowToc = true
 
  [params.homeInfoParams]
- title = "Gary Wong - About Me"
- content = "Technical Director & Architect with 25+ years of experience in AI, networking, security and cloud infrastructure. I share insights on enterprise architecture, automation, leadership, and the cultural balance I find through Guqin - a traditional Chinese musical instrument."
+ title = "Architecture, networks, and the work of making AI useful"
+ content = "Notes from a technical architect exploring how sound design, evidence, and agentic workflows can make complex technology more dependable."
 
 # 主選單
 [[menu.main]]
@@ -47,4 +47,3 @@ enableRobotsTXT = true
   name = "About"
   url = "/about/"
   weight = 5
-

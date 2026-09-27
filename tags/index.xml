@@ -6,21 +6,42 @@
     <description>Recent content in Tags on Gary Wong&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Sep 2026 14:00:00 +1000</lastBuildDate>
+    <lastBuildDate>Sun, 27 Sep 2026 10:44:00 +1000</lastBuildDate>
     <atom:link href="https://garywong.pro/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI</title>
       <link>https://garywong.pro/tags/ai/</link>
-      <pubDate>Sat, 12 Sep 2026 14:00:00 +1000</pubDate>
+      <pubDate>Sun, 27 Sep 2026 10:44:00 +1000</pubDate>
       <guid>https://garywong.pro/tags/ai/</guid>
       <description>Posts related to Artificial Intelligence, LLMs, and automation in networking.</description>
     </item>
     <item>
+      <title>Architecture</title>
+      <link>https://garywong.pro/tags/architecture/</link>
+      <pubDate>Sun, 27 Sep 2026 10:44:00 +1000</pubDate>
+      <guid>https://garywong.pro/tags/architecture/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Automation</title>
       <link>https://garywong.pro/tags/automation/</link>
-      <pubDate>Sat, 12 Sep 2026 14:00:00 +1000</pubDate>
+      <pubDate>Sun, 27 Sep 2026 10:44:00 +1000</pubDate>
       <guid>https://garywong.pro/tags/automation/</guid>
       <description></description>
+    </item>
+    <item>
+      <title>Leadership</title>
+      <link>https://garywong.pro/tags/leadership/</link>
+      <pubDate>Sun, 27 Sep 2026 10:44:00 +1000</pubDate>
+      <guid>https://garywong.pro/tags/leadership/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Networking</title>
+      <link>https://garywong.pro/tags/networking/</link>
+      <pubDate>Sun, 27 Sep 2026 10:44:00 +1000</pubDate>
+      <guid>https://garywong.pro/tags/networking/</guid>
+      <description>Posts about data centre, SD-WAN, automation, and network architecture.</description>
     </item>
     <item>
       <title>Cumulus</title>
@@ -49,13 +70,6 @@
       <pubDate>Sat, 12 Sep 2026 14:00:00 +1000</pubDate>
       <guid>https://garywong.pro/tags/mcp/</guid>
       <description></description>
-    </item>
-    <item>
-      <title>Networking</title>
-      <link>https://garywong.pro/tags/networking/</link>
-      <pubDate>Sat, 12 Sep 2026 14:00:00 +1000</pubDate>
-      <guid>https://garywong.pro/tags/networking/</guid>
-      <description>Posts about data centre, SD-WAN, automation, and network architecture.</description>
     </item>
     <item>
       <title>SONiC</title>
@@ -104,20 +118,6 @@
       <link>https://garywong.pro/tags/sr-mpls/</link>
       <pubDate>Thu, 04 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/tags/sr-mpls/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Architecture</title>
-      <link>https://garywong.pro/tags/architecture/</link>
-      <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://garywong.pro/tags/architecture/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Leadership</title>
-      <link>https://garywong.pro/tags/leadership/</link>
-      <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
-      <guid>https://garywong.pro/tags/leadership/</guid>
       <description></description>
     </item>
     <item>

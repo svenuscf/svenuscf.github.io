@@ -5,6 +5,7 @@ cp public/index.xml .
 cp public/404.html .
 cp public/sitemap.xml .
 
+cp -R public/assets/* assets/
 cp -R public/posts/* posts/
 cp -R public/tags/* tags/
 cp -R public/categories/* categories/

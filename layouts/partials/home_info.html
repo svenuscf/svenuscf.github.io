@@ -1,0 +1,20 @@
+{{- with site.Params.homeInfoParams }}
+<article class="first-entry home-info">
+    <div class="home-info__eyebrow">GARY WONG · TECHNICAL ARCHITECT</div>
+    <header class="entry-header">
+        <h1>{{ .Title | markdownify }}</h1>
+    </header>
+    <div class="entry-content">
+        {{ .Content | markdownify }}
+    </div>
+    <div class="home-info__topics" aria-label="Topics">
+        <a href="{{ "tags/networking/" | absLangURL }}">Networks</a>
+        <a href="{{ "tags/ai/" | absLangURL }}">AI &amp; agents</a>
+        <a href="{{ "tags/automation/" | absLangURL }}">Automation</a>
+        <a href="{{ "tags/architecture/" | absLangURL }}">Architecture</a>
+    </div>
+    <footer class="entry-footer">
+        {{ partial "social_icons.html" (dict "align" site.Params.homeInfoParams.AlignSocialIconsTo) }}
+    </footer>
+</article>
+{{- end -}}
