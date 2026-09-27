@@ -7,12 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Continue the Network Automation Journey Using AWX | Gary Wong&#39;s Blog</title>
 <meta name="keywords" content="automation, ansible, awx, kubernetes, cisco, networking">
-<meta name="description" content="I have been working on a project recently to assist a customer in upgrading thousands of devices in their network. Managing such a large-scale upgrade requires automation to ensure consistency, efficiency, and reduced manual intervention.
-For this project, AWX was selected as the automation UI platform, providing a powerful interface for managing Ansible playbooks, job templates, inventories, and credentials.
-
-What is AWX?
-AWX is the upstream open-source project for Red Hat Ansible Tower.
-It provides an intuitive web UI for:">
+<meta name="description" content="A practical introduction to using AWX with Ansible for controlled network-device upgrade workflows.">
 <meta name="author" content="Gary Wong">
 <link rel="canonical" href="https://garywong.pro/posts/awx-network-automation/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.738d3eec7df446f6d9ac6b14ef74552551163505895402395b50d83b2f7312b7.css" integrity="sha256-c40&#43;7H30RvbZrGsU73RVJVEWNQWJVAI5W1DYOy9zErc=" rel="preload stylesheet" as="style">
@@ -78,15 +73,12 @@ It provides an intuitive web UI for:">
 </script><meta property="og:url" content="https://garywong.pro/posts/awx-network-automation/">
   <meta property="og:site_name" content="Gary Wong&#39;s Blog">
   <meta property="og:title" content="Continue the Network Automation Journey Using AWX">
-  <meta property="og:description" content="I have been working on a project recently to assist a customer in upgrading thousands of devices in their network. Managing such a large-scale upgrade requires automation to ensure consistency, efficiency, and reduced manual intervention.
-For this project, AWX was selected as the automation UI platform, providing a powerful interface for managing Ansible playbooks, job templates, inventories, and credentials.
-What is AWX? AWX is the upstream open-source project for Red Hat Ansible Tower.
-It provides an intuitive web UI for:">
+  <meta property="og:description" content="A practical introduction to using AWX with Ansible for controlled network-device upgrade workflows.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-05-01T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-05-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-27T10:57:00+10:00">
     <meta property="article:tag" content="Automation">
     <meta property="article:tag" content="Ansible">
     <meta property="article:tag" content="Awx">
@@ -96,10 +88,7 @@ It provides an intuitive web UI for:">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Continue the Network Automation Journey Using AWX">
-  <meta name="twitter:description" content="I have been working on a project recently to assist a customer in upgrading thousands of devices in their network. Managing such a large-scale upgrade requires automation to ensure consistency, efficiency, and reduced manual intervention.
-For this project, AWX was selected as the automation UI platform, providing a powerful interface for managing Ansible playbooks, job templates, inventories, and credentials.
-What is AWX? AWX is the upstream open-source project for Red Hat Ansible Tower.
-It provides an intuitive web UI for:">
+  <meta name="twitter:description" content="A practical introduction to using AWX with Ansible for controlled network-device upgrade workflows.">
 
 
 <script type="application/ld+json">
@@ -128,15 +117,15 @@ It provides an intuitive web UI for:">
   "@type": "BlogPosting",
   "headline": "Continue the Network Automation Journey Using AWX",
   "name": "Continue the Network Automation Journey Using AWX",
-  "description": "I have been working on a project recently to assist a customer in upgrading thousands of devices in their network. Managing such a large-scale upgrade requires automation to ensure consistency, efficiency, and reduced manual intervention.\nFor this project, AWX was selected as the automation UI platform, providing a powerful interface for managing Ansible playbooks, job templates, inventories, and credentials.\nWhat is AWX? AWX is the upstream open-source project for Red Hat Ansible Tower.\nIt provides an intuitive web UI for:\n",
+  "description": "A practical introduction to using AWX with Ansible for controlled network-device upgrade workflows.",
   "keywords": [
     "automation", "ansible", "awx", "kubernetes", "cisco", "networking"
   ],
-  "articleBody": "I have been working on a project recently to assist a customer in upgrading thousands of devices in their network. Managing such a large-scale upgrade requires automation to ensure consistency, efficiency, and reduced manual intervention.\nFor this project, AWX was selected as the automation UI platform, providing a powerful interface for managing Ansible playbooks, job templates, inventories, and credentials.\nWhat is AWX? AWX is the upstream open-source project for Red Hat Ansible Tower.\nIt provides an intuitive web UI for:\nOrganizing Ansible projects Executing playbooks Managing credentials Defining inventories Creating job templates and surveys AWX is especially useful when automating network device upgrades, where thousands of routers/switches require consistent and validated operations.\nAWX’s Limitation with Interactive Prompts One challenge I encountered:\nAWX cannot handle interactive CLI prompts from network devices.\nDuring Cisco IOS XE upgrades, devices commonly send prompts (e.g., “Are you sure?”).\nAWX jobs cannot respond to these prompts, causing the playbook to hang or fail.\nThis limitation required a workaround.\nWorkaround: Using Cisco Embedded Event Manager (EEM) To bypass interactive prompts, I used EEM scripts.\nEEM runs natively on Cisco devices and can automatically respond to system prompts during upgrades.\nThis ensures:\nThe playbook execution does not pause The upgrade workflow remains non-interactive AWX can perform fully automated rolling upgrades across thousands of devices This combination — AWX orchestrating automation + EEM handling device-level interactivity — proved extremely stable.\nBuilding a 3-Node Kubernetes Cluster for AWX Before deploying AWX, I built a 3-node Kubernetes cluster:\n1 control plane 2 worker nodes Key components:\nDeployed using kubeadm containerd as the container runtime Installed pod network (CNI plugin) Configured networking/storage classes for AWX persistence This Kubernetes foundation provides:\nHigh availability Scalability Resilience Ideal for large-scale automation platforms like AWX.\nInstalling AWX Using the AWX Operator With Kubernetes ready, the next step was deploying AWX using the AWX Operator.\nAt the time of writing, I was using AWX 24.6.1.\nThe AWX Operator greatly simplifies:\nDeploying AWX Managing upgrades Handling AWX pods Maintaining AWX configuration It’s the recommended method for AWX on Kubernetes.\nSetting Up Custom Execution Environments or Using Requirements YAML By default, the AWX Operator does not include Cisco-related Ansible collections.\nThere are two approaches to include necessary dependencies:\nOption 1 — Custom Execution Environment (EE) Build a custom EE that includes:\nPython libraries netmiko ncclient Cisco Ansible Galaxy collections Requires building a Dockerfile, then pushing the built EE image to a registry (Docker Hub / GHCR / internal repo).\nAWX then uses this EE for job execution.\nOption 2 — requirements.yaml Create a requirements.yaml under your project:\ncollections: - cisco.ios - cisco.iosxe - community.network AWX User Interface Overview For those new to AWX, the UI offers a clear and structured way to manage automation.\nProjects This is where you link the Git repositories containing the Cisco IOS XE upgrade playbooks.\nProjects can be synced to pull the latest playbook updates.\nNote: Synchronisation is not automatic — every time you commit to Git, you must click Sync in AWX.\nInventories Devices (routers and switches) are organised into Inventory Groups.\nThis allows you to separate devices by type or purpose, ensuring the correct playbooks are applied to the right devices.\nCredentials Device access credentials are stored securely within AWX, including SSH keys and passwords.\nThis makes it easy to automate connecting to Cisco devices during playbook execution.\nTemplates Playbooks are turned into Job Templates, with surveys to capture necessary inputs such as:\nfirmware versions file names checksum values The AWX UI makes managing these components and automating the entire upgrade workflow straightforward and scalable.\nAWX Job Templates for Cisco IOS XE Upgrades The playbooks for upgrading Cisco IOS XE devices were ported into AWX as templates.\nKey templates included:\nActivate Firmware (activate.yaml) This template uses a survey to capture variables such as:\ntarget_version upgrade_filename md5_checksum These parameters ensure a smooth firmware activation process using the install activate command.\nFlash Cleanup (cleanup-flash.yaml) This template removes old, inactive files from the device’s flash memory using the install remove inactive command.\nUpload Firmware via TFTP/SCP (upload-image-tftp.yaml) This playbook handles the firmware file upload, with survey options for:\nselecting the transfer mode (TFTP or SCP) specifying the server_ip validating available storage space on the device The flexibility provided by AWX’s job templates and survey mechanisms makes it possible to customise the upgrade process for different device types with minimal manual intervention.\nRepository For those who missed my Github repository, visit here: svenuscf/ansible-cisco-upgrade (github.com). A new sub-directory awx is created to store related playbooks for AWX deployment.\nGood luck!\n",
-  "wordCount" : "753",
+  "articleBody": "I started exploring AWX while thinking about what a safer, more reviewable network-upgrade workflow needs at scale. A collection of playbooks is useful, but it is not yet an operating model: teams also need controlled inventories, credentials, approvals, execution history, and a repeatable way to collect the evidence from each run.\nAWX provides that operating layer around Ansible playbooks, job templates, inventories, and credentials. This post focuses on the design considerations behind that workflow rather than any particular environment.\nWhat is AWX? AWX is the upstream open-source project for Red Hat Ansible Tower.\nIt provides an intuitive web UI for:\nOrganizing Ansible projects Executing playbooks Managing credentials Defining inventories Creating job templates and surveys AWX is especially useful when automating network-device upgrades that need consistent execution and reviewable results.\nAWX’s Limitation with Interactive Prompts One challenge I encountered:\nAWX cannot handle interactive CLI prompts from network devices.\nDuring Cisco IOS XE upgrades, devices commonly send prompts (e.g., “Are you sure?”).\nAWX jobs cannot respond to these prompts, causing the playbook to hang or fail.\nThis limitation required a workaround.\nWorkaround: Using Cisco Embedded Event Manager (EEM) To bypass interactive prompts, I used EEM scripts.\nEEM runs natively on Cisco devices and can automatically respond to system prompts during upgrades.\nUsed carefully, this can help ensure:\nThe playbook execution does not pause The upgrade workflow remains non-interactive Device-side interactivity is designed and tested rather than left to surprise an unattended job This combination — AWX orchestrating automation + EEM handling device-level interactivity — is a useful pattern, but it still needs maintenance windows, pre-checks, rollback planning, and post-change validation.\nBuilding a 3-Node Kubernetes Cluster for AWX Before deploying AWX, I built a 3-node Kubernetes cluster:\n1 control plane 2 worker nodes Key components:\nDeployed using kubeadm containerd as the container runtime Installed pod network (CNI plugin) Configured networking/storage classes for AWX persistence This Kubernetes foundation can provide:\nHigh availability Scalability Resilience It is a reasonable starting point for an automation platform such as AWX, subject to the availability and operational requirements of the environment.\nInstalling AWX Using the AWX Operator With Kubernetes ready, the next step was deploying AWX using the AWX Operator.\nAt the time of writing, I was using AWX 24.6.1.\nThe AWX Operator greatly simplifies:\nDeploying AWX Managing upgrades Handling AWX pods Maintaining AWX configuration It’s the recommended method for AWX on Kubernetes.\nSetting Up Custom Execution Environments or Using Requirements YAML By default, the AWX Operator does not include Cisco-related Ansible collections.\nThere are two approaches to include necessary dependencies:\nOption 1 — Custom Execution Environment (EE) Build a custom EE that includes:\nPython libraries netmiko ncclient Cisco Ansible Galaxy collections Requires building a Dockerfile, then pushing the built EE image to a registry (Docker Hub / GHCR / internal repo).\nAWX then uses this EE for job execution.\nOption 2 — requirements.yaml Create a requirements.yaml under your project:\ncollections: - cisco.ios - cisco.iosxe - community.network AWX User Interface Overview For those new to AWX, the UI offers a clear and structured way to manage automation.\nProjects This is where you link the Git repositories containing the Cisco IOS XE upgrade playbooks.\nProjects can be synced to pull the latest playbook updates.\nNote: Synchronisation is not automatic — every time you commit to Git, you must click Sync in AWX.\nInventories Devices (routers and switches) are organised into Inventory Groups.\nThis allows you to separate devices by type or purpose, ensuring the correct playbooks are applied to the right devices.\nCredentials Device access credentials are stored securely within AWX, including SSH keys and passwords.\nThis makes it easy to automate connecting to Cisco devices during playbook execution.\nTemplates Playbooks are turned into Job Templates, with surveys to capture necessary inputs such as:\nfirmware versions file names checksum values The AWX UI makes managing these components and automating the entire upgrade workflow straightforward and scalable.\nAWX Job Templates for Cisco IOS XE Upgrades The playbooks for upgrading Cisco IOS XE devices were ported into AWX as templates.\nKey templates included:\nActivate Firmware (activate.yaml) This template uses a survey to capture variables such as:\ntarget_version upgrade_filename md5_checksum These parameters ensure a smooth firmware activation process using the install activate command.\nFlash Cleanup (cleanup-flash.yaml) This template removes old, inactive files from the device’s flash memory using the install remove inactive command.\nUpload Firmware via TFTP/SCP (upload-image-tftp.yaml) This playbook handles the firmware file upload, with survey options for:\nselecting the transfer mode (TFTP or SCP) specifying the server_ip validating available storage space on the device The flexibility provided by AWX’s job templates and survey mechanisms makes it possible to customise the upgrade process for different device types with minimal manual intervention.\nRepository For those who missed my Github repository, visit here: svenuscf/ansible-cisco-upgrade (github.com). A new sub-directory awx is created to store related playbooks for AWX deployment.\nGood luck!\n",
+  "wordCount" : "807",
   "inLanguage": "en",
   "datePublished": "2024-05-01T00:00:00Z",
-  "dateModified": "2024-05-01T00:00:00Z",
+  "dateModified": "2026-09-27T10:57:00+10:00",
   "author":{
     "@type": "Person",
     "name": "Gary Wong"
@@ -221,6 +210,9 @@ It provides an intuitive web UI for:">
     <h1 class="post-title entry-hint-parent">
       Continue the Network Automation Journey Using AWX
     </h1>
+    <div class="post-description">
+      A practical introduction to using AWX with Ansible for controlled network-device upgrade workflows.
+    </div>
     <div class="post-meta"><span title='2024-05-01 00:00:00 +0000 UTC'>May 1, 2024</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>Gary Wong</span>
 
 </div>
@@ -281,8 +273,8 @@ It provides an intuitive web UI for:">
     </details>
 </div>
 
-  <div class="post-content"><p>I have been working on a project recently to assist a customer in upgrading <strong>thousands of devices</strong> in their network. Managing such a large-scale upgrade requires automation to ensure consistency, efficiency, and reduced manual intervention.</p>
-<p>For this project, <strong>AWX</strong> was selected as the automation UI platform, providing a powerful interface for managing Ansible playbooks, job templates, inventories, and credentials.</p>
+  <div class="post-content"><p>I started exploring AWX while thinking about what a safer, more reviewable network-upgrade workflow needs at scale. A collection of playbooks is useful, but it is not yet an operating model: teams also need controlled inventories, credentials, approvals, execution history, and a repeatable way to collect the evidence from each run.</p>
+<p><strong>AWX</strong> provides that operating layer around Ansible playbooks, job templates, inventories, and credentials. This post focuses on the design considerations behind that workflow rather than any particular environment.</p>
 <hr>
 <h2 id="what-is-awx">What is AWX?<a hidden class="anchor" aria-hidden="true" href="#what-is-awx">#</a></h2>
 <p><strong>AWX</strong> is the upstream open-source project for Red Hat Ansible Tower.<br>
@@ -294,7 +286,7 @@ It provides an intuitive web UI for:</p>
 <li>Defining inventories</li>
 <li>Creating job templates and surveys</li>
 </ul>
-<p>AWX is especially useful when automating <strong>network device upgrades</strong>, where thousands of routers/switches require consistent and validated operations.</p>
+<p>AWX is especially useful when automating network-device upgrades that need consistent execution and reviewable results.</p>
 <hr>
 <h2 id="awxs-limitation-with-interactive-prompts">AWX’s Limitation with Interactive Prompts<a hidden class="anchor" aria-hidden="true" href="#awxs-limitation-with-interactive-prompts">#</a></h2>
 <p>One challenge I encountered:</p>
@@ -308,13 +300,13 @@ AWX jobs <strong>cannot respond</strong> to these prompts, causing the playbook 
 <h2 id="workaround-using-cisco-embedded-event-manager-eem">Workaround: Using Cisco Embedded Event Manager (EEM)<a hidden class="anchor" aria-hidden="true" href="#workaround-using-cisco-embedded-event-manager-eem">#</a></h2>
 <p>To bypass interactive prompts, I used <strong>EEM scripts</strong>.</p>
 <p>EEM runs natively on Cisco devices and can automatically respond to system prompts during upgrades.</p>
-<p>This ensures:</p>
+<p>Used carefully, this can help ensure:</p>
 <ul>
 <li>The playbook execution does not pause</li>
 <li>The upgrade workflow remains non-interactive</li>
-<li>AWX can perform fully automated rolling upgrades across thousands of devices</li>
+<li>Device-side interactivity is designed and tested rather than left to surprise an unattended job</li>
 </ul>
-<p>This combination — <strong>AWX orchestrating automation + EEM handling device-level interactivity</strong> — proved extremely stable.</p>
+<p>This combination — <strong>AWX orchestrating automation + EEM handling device-level interactivity</strong> — is a useful pattern, but it still needs maintenance windows, pre-checks, rollback planning, and post-change validation.</p>
 <h2 id="awx"><img alt="AWX" loading="lazy" src="/posts/awx-network-automation/awx1.avif"><a hidden class="anchor" aria-hidden="true" href="#awx">#</a></h2>
 <h2 id="building-a-3-node-kubernetes-cluster-for-awx">Building a 3-Node Kubernetes Cluster for AWX<a hidden class="anchor" aria-hidden="true" href="#building-a-3-node-kubernetes-cluster-for-awx">#</a></h2>
 <p>Before deploying AWX, I built a <strong>3-node Kubernetes cluster</strong>:</p>
@@ -329,13 +321,13 @@ AWX jobs <strong>cannot respond</strong> to these prompts, causing the playbook 
 <li>Installed pod network (CNI plugin)</li>
 <li>Configured networking/storage classes for AWX persistence</li>
 </ul>
-<p>This Kubernetes foundation provides:</p>
+<p>This Kubernetes foundation can provide:</p>
 <ul>
 <li>High availability</li>
 <li>Scalability</li>
 <li>Resilience</li>
 </ul>
-<p>Ideal for large-scale automation platforms like AWX.</p>
+<p>It is a reasonable starting point for an automation platform such as AWX, subject to the availability and operational requirements of the environment.</p>
 <p><img alt="K8s" loading="lazy" src="/posts/awx-network-automation/awx2.avif"></p>
 <hr>
 <h2 id="installing-awx-using-the-awx-operator">Installing AWX Using the AWX Operator<a hidden class="anchor" aria-hidden="true" href="#installing-awx-using-the-awx-operator">#</a></h2>

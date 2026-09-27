@@ -1,7 +1,11 @@
 +++
 title = "TCP-AO BGP Interop Between IOS-XE and IOS-XR"
 date = 2026-07-06T07:20:00+10:00
+lastmod = 2026-09-27T10:57:00+10:00
 tags = ["networking"]
+author = "Gary Wong"
+categories = ["Tech"]
+draft = false
 summary = "Lab note on getting BGP with TCP Authentication Option (TCP-AO) working between Cisco IOS-XE and IOS-XR, and the small details that blocked interop."
 description = "Technical lab note documenting a working TCP-AO BGP interop configuration between Catalyst 8000v (IOS-XE 26.1.1) and XR9kv (IOS-XR 7.11.21), including algorithm choice, key-string handling, and include-tcp-options behavior."
 +++
@@ -51,13 +55,13 @@ key chain KC_BGP tcp
   recv-id 1
   include-tcp-options
   cryptographic-algorithm aes-128-cmac
-  key-string 0 cisco123
+  key-string 0 example-key-not-a-secret
   accept-lifetime 00:00:00 Apr 1 2026 infinite
   send-lifetime 00:00:00 Apr 1 2026 infinite
 
 key chain KC_OSPF
  key 1
-  key-string 0 cisco123
+  key-string 0 example-key-not-a-secret
   accept-lifetime 00:00:00 Apr 1 2026 infinite
   send-lifetime 00:00:00 Apr 1 2026 infinite
   cryptographic-algorithm hmac-sha-256
@@ -69,7 +73,7 @@ Points to note:
 - `send-id` and `recv-id` are both set to `1` to match the XR side.
 - `include-tcp-options` is set here so the AO MAC includes non-AO TCP options.
 - `cryptographic-algorithm aes-128-cmac` selects the AES-128-CMAC algorithm.
-- The key is entered as `key-string 0 cisco123` so that both platforms share the same cleartext secret.
+- The key is entered as `key-string 0 example-key-not-a-secret` so that both platforms share the same illustrative cleartext value. Replace it with a protected secret in any real deployment.
 
 The OSPF key chain is shown only as a contrast: it uses HMAC-SHA-256 and a standard key chain, not the AO-specific TCP key chain.
 
@@ -113,7 +117,7 @@ This maps key `1` of key chain `KC_BGP` to SendID and ReceiveID `1`, aligning wi
 key chain KC_BGP
  key 1
   accept-lifetime 00:00:00 april 01 2026 infinite
-  key-string clear cisco123
+  key-string clear example-key-not-a-secret
   send-lifetime 00:00:00 april 01 2026 infinite
   cryptographic-algorithm AES-128-CMAC-96
  !
@@ -122,7 +126,7 @@ key chain KC_BGP
 key chain KC_OSPF
  key 1
   accept-lifetime 00:00:00 april 01 2026 infinite
-  key-string clear cisco123
+  key-string clear example-key-not-a-secret
   send-lifetime 00:00:00 april 01 2026 infinite
   cryptographic-algorithm HMAC-SHA-256
  !
@@ -131,7 +135,7 @@ key chain KC_OSPF
 
 Important details:
 
-- `key-string clear cisco123` ensures the underlying secret matches IOS-XE, which was entered with `key-string 0 cisco123`.
+- `key-string clear example-key-not-a-secret` ensures the underlying illustrative value matches IOS-XE, which was entered with `key-string 0 example-key-not-a-secret`.
 - `cryptographic-algorithm AES-128-CMAC-96` is the XR-side name for AES-128-CMAC with a 96-bit MAC.
 - Lifetimes match the XE side to avoid any time-based mismatches.
 
@@ -167,7 +171,7 @@ The table below summarizes how the key elements align between IOS-XE and IOS-XR 
 |--------------------------------|--------------------------------------------------|---------------------------------------------------|
 | AO IDs                         | `send-id 1`, `recv-id 1` in `KC_BGP tcp`        | `SendID 1 ReceiveID 1` in `tcp ao` key mapping    |
 | Algorithm name                 | `aes-128-cmac`                                   | `AES-128-CMAC-96`                                 |
-| Key entry                      | `key-string 0 cisco123`                         | `key-string clear cisco123`                       |
+| Key entry                      | `key-string 0 example-key-not-a-secret`         | `key-string clear example-key-not-a-secret`       |
 | TCP options inclusion          | `include-tcp-options` in key chain and neighbor | `include-tcp-options enable` under BGP neighbor   |
 | BGP AO activation              | `neighbor ... ao KC_BGP include-tcp-options`    | `neighbor ... ao KC_BGP include-tcp-options enable` |
 
@@ -226,4 +230,3 @@ For TCP-AO BGP interop between IOS-XE and IOS-XR, the safe baseline demonstrated
 - Ensure `include-tcp-options` is applied correctly: in both the IOS-XE key chain and neighbor, and under the IOS-XR neighbor with `include-tcp-options enable`.
 
 That combination was the difference between a BGP session that looked almost right and one that actually came up.
-

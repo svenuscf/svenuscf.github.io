@@ -1,10 +1,13 @@
 ---
 title: "Stop Writing CLI — Start Validating Design"
 date: 2025-11-18
+lastmod: 2026-09-27T10:57:00+10:00
 author: "Gary Wong"
 slug: "stop-writing-cli-start-validating-design"
 tags: ["networking", "architecture", "automation", "leadership"]
 categories: ["Tech"]
+summary: "A design-first argument for modelling intent, validating constraints, and treating generated configuration as an implementation artefact rather than the architecture itself."
+description: "Why network architects should begin with validated design intent before producing CLI."
 featuredImage: "cli.avif"
 draft: false
 ---
@@ -13,11 +16,9 @@ draft: false
 
 ## The Project That Triggered This Post
 
-Recently, I was assigned to a mid-scale network migration spanning three data centers.
+I have worked on designs where the technical problem was not unusual, but the delivery method was: the answer was expected to be a large volume of hand-written CLI before the intent had been made explicit.
 
-The architecture was straightforward but labor-intensive: dozens of VRFs, hundreds of point-to-point BGP sessions in a BGP fabric, and a VMware NSX overlay. Despite this modern setup, I was asked to manually write all of the configuration changes as CLI.
-
-After coding over **6,000 lines of CLI** that night, I paused to reflect:
+The more I worked through the configuration, the clearer the architectural question became:
 
 - Should network design in 2025 still rely on manual CLI output?
 - Are we truly addressing the core architecture, or merely throwing syntax at complexity?
@@ -28,7 +29,7 @@ A better question would have been:
 
 ---
 
-## The Real Problem: We’re Designing Backwards
+## The real problem: designing backwards
 
 The network itself wasn’t broken — but the approach was.  
 In this case, the team had been:
@@ -43,7 +44,7 @@ The CLI became both the glue holding the solution together **and** the scapegoat
 
 ---
 
-## Manual IP Subnetting is Outdated
+## Manual IP subnetting is a design smell
 
 Today, manually calculating point-to-point subnets shouldn’t exist.
 
@@ -58,7 +59,7 @@ It’s slow, brittle, and architecturally obsolete.
 
 ---
 
-## The Role We Should Play
+## The role we should play
 
 As network architects, our job is not to churn out config lines.
 
@@ -77,7 +78,7 @@ We demonstrate value through architecture, not typing speed.
 
 ---
 
-## What Needs to Change
+## What needs to change
 
 ### **Technically:**
 
@@ -98,18 +99,15 @@ This reframes you as a strategic advisor — not a syntax producer.
 
 ---
 
-## If You’re Still Writing CLI Manually…
+## If you are still writing CLI manually
 
-Here’s the hard truth:
+Hand-written CLI is sometimes appropriate: a small change, a controlled exception, or a troubleshooting step may be clearest when expressed directly. The problem begins when syntax becomes the only design artefact.
 
-> If you're typing every line by hand, you're proving you can type, not that you can think.
-
-Don't let decades of experience be reduced to syntax.  
-Your value is in **strategy**, not the keyboard.
+The value of an experienced architect is not less configuration. It is better context: the ability to decide what should be modelled, what must be validated, and where an exception needs to be made visible.
 
 ---
 
-## Conclusion: Be the Strategic Advisor, Not the Keyboard Resource
+## Conclusion: make configuration answer to design
 
 We often hear:
 
@@ -130,5 +128,4 @@ It’s:
 
 ---
 
-### **Let’s raise the bar — one design at a time.**
-
+Configuration is still necessary. It should simply remain an implementation of the design, not the place where the design first becomes visible.

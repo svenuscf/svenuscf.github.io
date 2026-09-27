@@ -1,16 +1,19 @@
 ---
 title: "Continue the Network Automation Journey Using AWX"
 date: 2024-05-01
+lastmod: 2026-09-27T10:57:00+10:00
 author: "Gary Wong"
 slug: "awx-network-automation"
 tags: ["automation", "ansible", "awx", "kubernetes", "cisco", "networking"]
 categories: ["Tech"]
+summary: "What AWX adds to a network-upgrade workflow, where interactive device prompts complicate automation, and how execution environments shape the result."
+description: "A practical introduction to using AWX with Ansible for controlled network-device upgrade workflows."
 draft: false
 ---
 
-I have been working on a project recently to assist a customer in upgrading **thousands of devices** in their network. Managing such a large-scale upgrade requires automation to ensure consistency, efficiency, and reduced manual intervention.
+I started exploring AWX while thinking about what a safer, more reviewable network-upgrade workflow needs at scale. A collection of playbooks is useful, but it is not yet an operating model: teams also need controlled inventories, credentials, approvals, execution history, and a repeatable way to collect the evidence from each run.
 
-For this project, **AWX** was selected as the automation UI platform, providing a powerful interface for managing Ansible playbooks, job templates, inventories, and credentials.
+**AWX** provides that operating layer around Ansible playbooks, job templates, inventories, and credentials. This post focuses on the design considerations behind that workflow rather than any particular environment.
 
 ---
 
@@ -25,7 +28,7 @@ It provides an intuitive web UI for:
 - Defining inventories  
 - Creating job templates and surveys  
 
-AWX is especially useful when automating **network device upgrades**, where thousands of routers/switches require consistent and validated operations.
+AWX is especially useful when automating network-device upgrades that need consistent execution and reviewable results.
 
 ---
 
@@ -48,13 +51,13 @@ To bypass interactive prompts, I used **EEM scripts**.
 
 EEM runs natively on Cisco devices and can automatically respond to system prompts during upgrades.
 
-This ensures:
+Used carefully, this can help ensure:
 
 - The playbook execution does not pause  
 - The upgrade workflow remains non-interactive  
-- AWX can perform fully automated rolling upgrades across thousands of devices  
+- Device-side interactivity is designed and tested rather than left to surprise an unattended job
 
-This combination — **AWX orchestrating automation + EEM handling device-level interactivity** — proved extremely stable.
+This combination — **AWX orchestrating automation + EEM handling device-level interactivity** — is a useful pattern, but it still needs maintenance windows, pre-checks, rollback planning, and post-change validation.
 
 ![AWX](awx1.avif)
 ---
@@ -73,13 +76,13 @@ Key components:
 - Installed pod network (CNI plugin)
 - Configured networking/storage classes for AWX persistence
 
-This Kubernetes foundation provides:
+This Kubernetes foundation can provide:
 
 - High availability  
 - Scalability  
 - Resilience  
 
-Ideal for large-scale automation platforms like AWX.
+It is a reasonable starting point for an automation platform such as AWX, subject to the availability and operational requirements of the environment.
 
 ![K8s](awx2.avif)
 

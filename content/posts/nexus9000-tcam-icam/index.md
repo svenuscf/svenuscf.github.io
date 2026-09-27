@@ -1,23 +1,26 @@
 ---
 title: "Tweaking the Cisco Nexus 9000 TCAM: A Real-World Fix and iCAM Insights"
 date: 2024-11-01
+lastmod: 2026-09-27T10:57:00+10:00
 author: "Gary Wong"
 slug: "nexus9000-tcam-icam"
 tags: ["networking", "nexus9k", "tcam", "dc", "architecture", "troubleshooting"]
 categories: ["Tech"]
+summary: "A TCAM allocation lesson from moving a policy pattern to a Nexus 9000: configuration compatibility is not the same as hardware-resource compatibility."
+description: "Why a Nexus 9000 may require an explicit VACL TCAM region, and the validation questions to ask before a configuration migration."
 draft: false
 ---
 
-In a recent project, I had the opportunity to work with something “new” yet familiar. During a customer data center refresh project, one of the key tasks was upgrading their aging Nexus 5000 to the new Nexus 9000 series.
+I ran into a useful migration lesson while working through a Nexus 5000-to-Nexus 9000 configuration pattern: a familiar configuration can meet a different hardware-resource model.
 
-The model in play? **N93360YC-FX2**, a powerhouse with enhanced capabilities — but with a few nuances.
+The platform was an **N93360YC-FX2**, and the detail that mattered was its TCAM allocation.
 
 At first glance, porting over configurations from the N5K seemed straightforward.  
 No FCoE, no zoning, no fancy storage integrations.  
 
 But then came the surprise.
 
-While copying over configurations, I encountered an unexpected error related to **TCAM**, specifically that the:
+When applying the relevant policy configuration, I encountered an unexpected error related to **TCAM**, specifically that the:
 
 > **“vacl region is not configured.”**
 
@@ -26,7 +29,7 @@ This caused several issues:
 - vPC was up, but **no active VLANs** appeared on the trunk  
 - Interface trunk showed **error-disabled** for all VLANs  
 
-After some research — and input from my Cisco Champion network — it became clear that the Nexus 9000 requires explicit **TCAM vacl region** configuration for:
+The lesson was that this Nexus 9000 required explicit **TCAM vacl region** configuration for:
 
 - ACLs within VLAN maps  
 - ACLs under a port-channel for **HSRP filtering**  
@@ -63,4 +66,3 @@ switch(config)# hardware access-list tcam region ing-racl 2048
 
 switch(config)# hardware access-list tcam region vacl 256
     (Reboot required)
-

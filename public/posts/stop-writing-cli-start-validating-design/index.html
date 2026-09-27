@@ -7,11 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Stop Writing CLI — Start Validating Design | Gary Wong&#39;s Blog</title>
 <meta name="keywords" content="networking, architecture, automation, leadership">
-<meta name="description" content="
-The Project That Triggered This Post
-Recently, I was assigned to a mid-scale network migration spanning three data centers.
-The architecture was straightforward but labor-intensive: dozens of VRFs, hundreds of point-to-point BGP sessions in a BGP fabric, and a VMware NSX overlay. Despite this modern setup, I was asked to manually write all of the configuration changes as CLI.
-After coding over 6,000 lines of CLI that night, I paused to reflect:">
+<meta name="description" content="Why network architects should begin with validated design intent before producing CLI.">
 <meta name="author" content="Gary Wong">
 <link rel="canonical" href="https://garywong.pro/posts/stop-writing-cli-start-validating-design/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.738d3eec7df446f6d9ac6b14ef74552551163505895402395b50d83b2f7312b7.css" integrity="sha256-c40&#43;7H30RvbZrGsU73RVJVEWNQWJVAI5W1DYOy9zErc=" rel="preload stylesheet" as="style">
@@ -77,14 +73,12 @@ After coding over 6,000 lines of CLI that night, I paused to reflect:">
 </script><meta property="og:url" content="https://garywong.pro/posts/stop-writing-cli-start-validating-design/">
   <meta property="og:site_name" content="Gary Wong&#39;s Blog">
   <meta property="og:title" content="Stop Writing CLI — Start Validating Design">
-  <meta property="og:description" content="The Project That Triggered This Post Recently, I was assigned to a mid-scale network migration spanning three data centers.
-The architecture was straightforward but labor-intensive: dozens of VRFs, hundreds of point-to-point BGP sessions in a BGP fabric, and a VMware NSX overlay. Despite this modern setup, I was asked to manually write all of the configuration changes as CLI.
-After coding over 6,000 lines of CLI that night, I paused to reflect:">
+  <meta property="og:description" content="Why network architects should begin with validated design intent before producing CLI.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-11-18T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-11-18T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-27T10:57:00+10:00">
     <meta property="article:tag" content="Networking">
     <meta property="article:tag" content="Architecture">
     <meta property="article:tag" content="Automation">
@@ -92,9 +86,7 @@ After coding over 6,000 lines of CLI that night, I paused to reflect:">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Stop Writing CLI — Start Validating Design">
-  <meta name="twitter:description" content="The Project That Triggered This Post Recently, I was assigned to a mid-scale network migration spanning three data centers.
-The architecture was straightforward but labor-intensive: dozens of VRFs, hundreds of point-to-point BGP sessions in a BGP fabric, and a VMware NSX overlay. Despite this modern setup, I was asked to manually write all of the configuration changes as CLI.
-After coding over 6,000 lines of CLI that night, I paused to reflect:">
+  <meta name="twitter:description" content="Why network architects should begin with validated design intent before producing CLI.">
 
 
 <script type="application/ld+json">
@@ -123,15 +115,15 @@ After coding over 6,000 lines of CLI that night, I paused to reflect:">
   "@type": "BlogPosting",
   "headline": "Stop Writing CLI — Start Validating Design",
   "name": "Stop Writing CLI — Start Validating Design",
-  "description": "\nThe Project That Triggered This Post Recently, I was assigned to a mid-scale network migration spanning three data centers.\nThe architecture was straightforward but labor-intensive: dozens of VRFs, hundreds of point-to-point BGP sessions in a BGP fabric, and a VMware NSX overlay. Despite this modern setup, I was asked to manually write all of the configuration changes as CLI.\nAfter coding over 6,000 lines of CLI that night, I paused to reflect:\n",
+  "description": "Why network architects should begin with validated design intent before producing CLI.",
   "keywords": [
     "networking", "architecture", "automation", "leadership"
   ],
-  "articleBody": "\nThe Project That Triggered This Post Recently, I was assigned to a mid-scale network migration spanning three data centers.\nThe architecture was straightforward but labor-intensive: dozens of VRFs, hundreds of point-to-point BGP sessions in a BGP fabric, and a VMware NSX overlay. Despite this modern setup, I was asked to manually write all of the configuration changes as CLI.\nAfter coding over 6,000 lines of CLI that night, I paused to reflect:\nShould network design in 2025 still rely on manual CLI output? Are we truly addressing the core architecture, or merely throwing syntax at complexity? A better question would have been:\nCould we design this multi-site data center fabric in a more automated, intent-driven way from the start?\nThe Real Problem: We’re Designing Backwards The network itself wasn’t broken — but the approach was.\nIn this case, the team had been:\nManually subnetting point-to-point IP addresses in spreadsheets or Notepad Copy-pasting BGP neighbor configurations with only ASNs changed Dispersing route-redistribution logic across individual devices Adding a VMware NSX overlay as an abstraction layer that didn’t reduce complexity The design lacked any intent-based modeling.\nThe CLI became both the glue holding the solution together and the scapegoat for its shortcomings.\nManual IP Subnetting is Outdated Today, manually calculating point-to-point subnets shouldn’t exist.\nInstead:\nDefine IP pools Define automated assignment policies Let software handle the math In an API-first, cloud-first, IaC world, we shouldn’t still be solving BGP mesh addressing with “spreadsheet math.”\nIt’s slow, brittle, and architecturally obsolete.\nThe Role We Should Play As network architects, our job is not to churn out config lines.\nWe are hired to:\nValidate and verify design logic Model configuration intent Align topology with business and security requirements Build networks that are scalable, observable, and automatable In other words:\nStop being a config writer. Start being a design validator.\nWe demonstrate value through architecture, not typing speed.\nWhat Needs to Change Technically: Use centralized IP pools and templates Automate config generation (Python, Jinja2) Use structured intent (YAML/JSON) Leverage design metadata to generate configs Adopt modern fabrics (ACI, EVPN-VXLAN) to simplify multi-site design Culturally: Stop accepting “just give me the config” Steer the conversation toward design validation Respond with partnership such as: “Let me review the design logic first and deliver a reusable configuration model.”\nThis reframes you as a strategic advisor — not a syntax producer.\nIf You’re Still Writing CLI Manually… Here’s the hard truth:\nIf you’re typing every line by hand, you’re proving you can type, not that you can think.\nDon’t let decades of experience be reduced to syntax.\nYour value is in strategy, not the keyboard.\nConclusion: Be the Strategic Advisor, Not the Keyboard Resource We often hear:\n“Hey, can you just generate the config for us?”\nA better response:\n“Yes — but let me first review the design so I’m not just fixing symptoms.” “Let’s align on the architecture model so we don’t create another one-off solution.” Because the future of network design isn’t more CLI.\nIt’s:\nbetter context better consistency smarter delivery Let’s raise the bar — one design at a time. ",
-  "wordCount" : "514",
+  "articleBody": "\nThe Project That Triggered This Post I have worked on designs where the technical problem was not unusual, but the delivery method was: the answer was expected to be a large volume of hand-written CLI before the intent had been made explicit.\nThe more I worked through the configuration, the clearer the architectural question became:\nShould network design in 2025 still rely on manual CLI output? Are we truly addressing the core architecture, or merely throwing syntax at complexity? A better question would have been:\nCould we design this multi-site data center fabric in a more automated, intent-driven way from the start?\nThe real problem: designing backwards The network itself wasn’t broken — but the approach was.\nIn this case, the team had been:\nManually subnetting point-to-point IP addresses in spreadsheets or Notepad Copy-pasting BGP neighbor configurations with only ASNs changed Dispersing route-redistribution logic across individual devices Adding a VMware NSX overlay as an abstraction layer that didn’t reduce complexity The design lacked any intent-based modeling.\nThe CLI became both the glue holding the solution together and the scapegoat for its shortcomings.\nManual IP subnetting is a design smell Today, manually calculating point-to-point subnets shouldn’t exist.\nInstead:\nDefine IP pools Define automated assignment policies Let software handle the math In an API-first, cloud-first, IaC world, we shouldn’t still be solving BGP mesh addressing with “spreadsheet math.”\nIt’s slow, brittle, and architecturally obsolete.\nThe role we should play As network architects, our job is not to churn out config lines.\nWe are hired to:\nValidate and verify design logic Model configuration intent Align topology with business and security requirements Build networks that are scalable, observable, and automatable In other words:\nStop being a config writer. Start being a design validator.\nWe demonstrate value through architecture, not typing speed.\nWhat needs to change Technically: Use centralized IP pools and templates Automate config generation (Python, Jinja2) Use structured intent (YAML/JSON) Leverage design metadata to generate configs Adopt modern fabrics (ACI, EVPN-VXLAN) to simplify multi-site design Culturally: Stop accepting “just give me the config” Steer the conversation toward design validation Respond with partnership such as: “Let me review the design logic first and deliver a reusable configuration model.”\nThis reframes you as a strategic advisor — not a syntax producer.\nIf you are still writing CLI manually Hand-written CLI is sometimes appropriate: a small change, a controlled exception, or a troubleshooting step may be clearest when expressed directly. The problem begins when syntax becomes the only design artefact.\nThe value of an experienced architect is not less configuration. It is better context: the ability to decide what should be modelled, what must be validated, and where an exception needs to be made visible.\nConclusion: make configuration answer to design We often hear:\n“Hey, can you just generate the config for us?”\nA better response:\n“Yes — but let me first review the design so I’m not just fixing symptoms.” “Let’s align on the architecture model so we don’t create another one-off solution.” Because the future of network design isn’t more CLI.\nIt’s:\nbetter context better consistency smarter delivery Configuration is still necessary. It should simply remain an implementation of the design, not the place where the design first becomes visible.\n",
+  "wordCount" : "536",
   "inLanguage": "en",
   "datePublished": "2025-11-18T00:00:00Z",
-  "dateModified": "2025-11-18T00:00:00Z",
+  "dateModified": "2026-09-27T10:57:00+10:00",
   "author":{
     "@type": "Person",
     "name": "Gary Wong"
@@ -216,6 +208,9 @@ After coding over 6,000 lines of CLI that night, I paused to reflect:">
     <h1 class="post-title entry-hint-parent">
       Stop Writing CLI — Start Validating Design
     </h1>
+    <div class="post-description">
+      Why network architects should begin with validated design intent before producing CLI.
+    </div>
     <div class="post-meta"><span title='2025-11-18 00:00:00 +0000 UTC'>November 18, 2025</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>Gary Wong</span>
 
 </div>
@@ -229,13 +224,13 @@ After coding over 6,000 lines of CLI that night, I paused to reflect:">
                 <li>
                     <a href="#the-project-that-triggered-this-post" aria-label="The Project That Triggered This Post">The Project That Triggered This Post</a></li>
                 <li>
-                    <a href="#the-real-problem-were-designing-backwards" aria-label="The Real Problem: We’re Designing Backwards">The Real Problem: We’re Designing Backwards</a></li>
+                    <a href="#the-real-problem-designing-backwards" aria-label="The real problem: designing backwards">The real problem: designing backwards</a></li>
                 <li>
-                    <a href="#manual-ip-subnetting-is-outdated" aria-label="Manual IP Subnetting is Outdated">Manual IP Subnetting is Outdated</a></li>
+                    <a href="#manual-ip-subnetting-is-a-design-smell" aria-label="Manual IP subnetting is a design smell">Manual IP subnetting is a design smell</a></li>
                 <li>
-                    <a href="#the-role-we-should-play" aria-label="The Role We Should Play">The Role We Should Play</a></li>
+                    <a href="#the-role-we-should-play" aria-label="The role we should play">The role we should play</a></li>
                 <li>
-                    <a href="#what-needs-to-change" aria-label="What Needs to Change">What Needs to Change</a><ul>
+                    <a href="#what-needs-to-change" aria-label="What needs to change">What needs to change</a><ul>
                         
                 <li>
                     <a href="#technically" aria-label="Technically:">Technically:</a></li>
@@ -243,15 +238,10 @@ After coding over 6,000 lines of CLI that night, I paused to reflect:">
                     <a href="#culturally" aria-label="Culturally:">Culturally:</a></li></ul>
                 </li>
                 <li>
-                    <a href="#if-youre-still-writing-cli-manually" aria-label="If You’re Still Writing CLI Manually…">If You’re Still Writing CLI Manually…</a></li>
+                    <a href="#if-you-are-still-writing-cli-manually" aria-label="If you are still writing CLI manually">If you are still writing CLI manually</a></li>
                 <li>
-                    <a href="#conclusion-be-the-strategic-advisor-not-the-keyboard-resource" aria-label="Conclusion: Be the Strategic Advisor, Not the Keyboard Resource">Conclusion: Be the Strategic Advisor, Not the Keyboard Resource</a><ul>
-                        
-                <li>
-                    <a href="#lets-raise-the-bar--one-design-at-a-time" aria-label="Let’s raise the bar — one design at a time.">Let’s raise the bar — one design at a time.</a>
+                    <a href="#conclusion-make-configuration-answer-to-design" aria-label="Conclusion: make configuration answer to design">Conclusion: make configuration answer to design</a>
                 </li>
-            </ul>
-            </li>
             </ul>
         </div>
     </details>
@@ -259,9 +249,8 @@ After coding over 6,000 lines of CLI that night, I paused to reflect:">
 
   <div class="post-content"><p><img alt="Stop Writing CLI" loading="lazy" src="/posts/stop-writing-cli-start-validating-design/cli.avif"></p>
 <h2 id="the-project-that-triggered-this-post">The Project That Triggered This Post<a hidden class="anchor" aria-hidden="true" href="#the-project-that-triggered-this-post">#</a></h2>
-<p>Recently, I was assigned to a mid-scale network migration spanning three data centers.</p>
-<p>The architecture was straightforward but labor-intensive: dozens of VRFs, hundreds of point-to-point BGP sessions in a BGP fabric, and a VMware NSX overlay. Despite this modern setup, I was asked to manually write all of the configuration changes as CLI.</p>
-<p>After coding over <strong>6,000 lines of CLI</strong> that night, I paused to reflect:</p>
+<p>I have worked on designs where the technical problem was not unusual, but the delivery method was: the answer was expected to be a large volume of hand-written CLI before the intent had been made explicit.</p>
+<p>The more I worked through the configuration, the clearer the architectural question became:</p>
 <ul>
 <li>Should network design in 2025 still rely on manual CLI output?</li>
 <li>Are we truly addressing the core architecture, or merely throwing syntax at complexity?</li>
@@ -271,7 +260,7 @@ After coding over 6,000 lines of CLI that night, I paused to reflect:">
 <p><strong>Could we design this multi-site data center fabric in a more automated, intent-driven way from the start?</strong></p>
 </blockquote>
 <hr>
-<h2 id="the-real-problem-were-designing-backwards">The Real Problem: We’re Designing Backwards<a hidden class="anchor" aria-hidden="true" href="#the-real-problem-were-designing-backwards">#</a></h2>
+<h2 id="the-real-problem-designing-backwards">The real problem: designing backwards<a hidden class="anchor" aria-hidden="true" href="#the-real-problem-designing-backwards">#</a></h2>
 <p>The network itself wasn’t broken — but the approach was.<br>
 In this case, the team had been:</p>
 <ul>
@@ -283,7 +272,7 @@ In this case, the team had been:</p>
 <p>The design lacked any <strong>intent-based modeling</strong>.<br>
 The CLI became both the glue holding the solution together <strong>and</strong> the scapegoat for its shortcomings.</p>
 <hr>
-<h2 id="manual-ip-subnetting-is-outdated">Manual IP Subnetting is Outdated<a hidden class="anchor" aria-hidden="true" href="#manual-ip-subnetting-is-outdated">#</a></h2>
+<h2 id="manual-ip-subnetting-is-a-design-smell">Manual IP subnetting is a design smell<a hidden class="anchor" aria-hidden="true" href="#manual-ip-subnetting-is-a-design-smell">#</a></h2>
 <p>Today, manually calculating point-to-point subnets shouldn’t exist.</p>
 <p>Instead:</p>
 <ul>
@@ -294,7 +283,7 @@ The CLI became both the glue holding the solution together <strong>and</strong> 
 <p>In an API-first, cloud-first, IaC world, we shouldn’t still be solving BGP mesh addressing with “spreadsheet math.”<br>
 It’s slow, brittle, and architecturally obsolete.</p>
 <hr>
-<h2 id="the-role-we-should-play">The Role We Should Play<a hidden class="anchor" aria-hidden="true" href="#the-role-we-should-play">#</a></h2>
+<h2 id="the-role-we-should-play">The role we should play<a hidden class="anchor" aria-hidden="true" href="#the-role-we-should-play">#</a></h2>
 <p>As network architects, our job is not to churn out config lines.</p>
 <p>We are hired to:</p>
 <ul>
@@ -309,7 +298,7 @@ It’s slow, brittle, and architecturally obsolete.</p>
 </blockquote>
 <p>We demonstrate value through architecture, not typing speed.</p>
 <hr>
-<h2 id="what-needs-to-change">What Needs to Change<a hidden class="anchor" aria-hidden="true" href="#what-needs-to-change">#</a></h2>
+<h2 id="what-needs-to-change">What needs to change<a hidden class="anchor" aria-hidden="true" href="#what-needs-to-change">#</a></h2>
 <h3 id="technically"><strong>Technically:</strong><a hidden class="anchor" aria-hidden="true" href="#technically">#</a></h3>
 <ul>
 <li>Use centralized IP pools and templates</li>
@@ -330,15 +319,11 @@ It’s slow, brittle, and architecturally obsolete.</p>
 </ul>
 <p>This reframes you as a strategic advisor — not a syntax producer.</p>
 <hr>
-<h2 id="if-youre-still-writing-cli-manually">If You’re Still Writing CLI Manually…<a hidden class="anchor" aria-hidden="true" href="#if-youre-still-writing-cli-manually">#</a></h2>
-<p>Here’s the hard truth:</p>
-<blockquote>
-<p>If you&rsquo;re typing every line by hand, you&rsquo;re proving you can type, not that you can think.</p>
-</blockquote>
-<p>Don&rsquo;t let decades of experience be reduced to syntax.<br>
-Your value is in <strong>strategy</strong>, not the keyboard.</p>
+<h2 id="if-you-are-still-writing-cli-manually">If you are still writing CLI manually<a hidden class="anchor" aria-hidden="true" href="#if-you-are-still-writing-cli-manually">#</a></h2>
+<p>Hand-written CLI is sometimes appropriate: a small change, a controlled exception, or a troubleshooting step may be clearest when expressed directly. The problem begins when syntax becomes the only design artefact.</p>
+<p>The value of an experienced architect is not less configuration. It is better context: the ability to decide what should be modelled, what must be validated, and where an exception needs to be made visible.</p>
 <hr>
-<h2 id="conclusion-be-the-strategic-advisor-not-the-keyboard-resource">Conclusion: Be the Strategic Advisor, Not the Keyboard Resource<a hidden class="anchor" aria-hidden="true" href="#conclusion-be-the-strategic-advisor-not-the-keyboard-resource">#</a></h2>
+<h2 id="conclusion-make-configuration-answer-to-design">Conclusion: make configuration answer to design<a hidden class="anchor" aria-hidden="true" href="#conclusion-make-configuration-answer-to-design">#</a></h2>
 <p>We often hear:</p>
 <blockquote>
 <p>“Hey, can you just generate the config for us?”</p>
@@ -356,7 +341,7 @@ Your value is in <strong>strategy</strong>, not the keyboard.</p>
 <li>smarter <strong>delivery</strong></li>
 </ul>
 <hr>
-<h3 id="lets-raise-the-bar--one-design-at-a-time"><strong>Let’s raise the bar — one design at a time.</strong><a hidden class="anchor" aria-hidden="true" href="#lets-raise-the-bar--one-design-at-a-time">#</a></h3>
+<p>Configuration is still necessary. It should simply remain an implementation of the design, not the place where the design first becomes visible.</p>
 
 
   </div>

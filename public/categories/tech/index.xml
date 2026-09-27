@@ -6,7 +6,7 @@
     <description>Recent content in Tech on Gary Wong&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Sep 2026 10:44:00 +1000</lastBuildDate>
+    <lastBuildDate>Sun, 27 Sep 2026 10:57:00 +1000</lastBuildDate>
     <atom:link href="https://garywong.pro/categories/tech/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI Changed the Shape of the Work, Not the Responsibility</title>
@@ -23,6 +23,13 @@
       <description>A personal EVE-NG experiment using Codex, Cursor, and MCP to turn one EVPN-VXLAN design intent into validated SONiC and Cumulus implementations.</description>
     </item>
     <item>
+      <title>TCP-AO BGP Interop Between IOS-XE and IOS-XR</title>
+      <link>https://garywong.pro/posts/tcp-ao-bgp-xe-xr-interop/</link>
+      <pubDate>Mon, 06 Jul 2026 07:20:00 +1000</pubDate>
+      <guid>https://garywong.pro/posts/tcp-ao-bgp-xe-xr-interop/</guid>
+      <description>Technical lab note documenting a working TCP-AO BGP interop configuration between Catalyst 8000v (IOS-XE 26.1.1) and XR9kv (IOS-XR 7.11.21), including algorithm choice, key-string handling, and include-tcp-options behavior.</description>
+    </item>
+    <item>
       <title>From 0–22 to 0–5: Learning AI the Hard Way in 1999</title>
       <link>https://garywong.pro/posts/robocup-1999-fyp/</link>
       <pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
@@ -31,25 +38,25 @@
 &lt;p&gt;Our opponent was CMUnited from Carnegie Mellon University, the top RoboCup simulator team at the time. They were the kind of team that routinely crushed others by double digits. Our starting point was simple: take our baseline HKUST team, play them against CMUnited, and see what happens.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>When a Design Template Scales Undocumented Compromise</title>
+      <link>https://garywong.pro/posts/when-a-design-template-scales-undocumented-compromise/</link>
+      <pubDate>Wed, 11 Mar 2026 22:10:00 +1100</pubDate>
+      <guid>https://garywong.pro/posts/when-a-design-template-scales-undocumented-compromise/</guid>
+      <description>Why architecture templates must retain the reasoning and residual risk behind the pattern they repeat.</description>
+    </item>
+    <item>
       <title>Stop Writing CLI — Start Validating Design</title>
       <link>https://garywong.pro/posts/stop-writing-cli-start-validating-design/</link>
       <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/posts/stop-writing-cli-start-validating-design/</guid>
-      <description>&lt;p&gt;&lt;img alt=&#34;Stop Writing CLI&#34; loading=&#34;lazy&#34; src=&#34;https://garywong.pro/posts/stop-writing-cli-start-validating-design/cli.avif&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;the-project-that-triggered-this-post&#34;&gt;The Project That Triggered This Post&lt;/h2&gt;
-&lt;p&gt;Recently, I was assigned to a mid-scale network migration spanning three data centers.&lt;/p&gt;
-&lt;p&gt;The architecture was straightforward but labor-intensive: dozens of VRFs, hundreds of point-to-point BGP sessions in a BGP fabric, and a VMware NSX overlay. Despite this modern setup, I was asked to manually write all of the configuration changes as CLI.&lt;/p&gt;
-&lt;p&gt;After coding over &lt;strong&gt;6,000 lines of CLI&lt;/strong&gt; that night, I paused to reflect:&lt;/p&gt;</description>
+      <description>Why network architects should begin with validated design intent before producing CLI.</description>
     </item>
     <item>
       <title>Tweaking the Cisco Nexus 9000 TCAM: A Real-World Fix and iCAM Insights</title>
       <link>https://garywong.pro/posts/nexus9000-tcam-icam/</link>
       <pubDate>Fri, 01 Nov 2024 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/posts/nexus9000-tcam-icam/</guid>
-      <description>&lt;p&gt;In a recent project, I had the opportunity to work with something “new” yet familiar. During a customer data center refresh project, one of the key tasks was upgrading their aging Nexus 5000 to the new Nexus 9000 series.&lt;/p&gt;
-&lt;p&gt;The model in play? &lt;strong&gt;N93360YC-FX2&lt;/strong&gt;, a powerhouse with enhanced capabilities — but with a few nuances.&lt;/p&gt;
-&lt;p&gt;At first glance, porting over configurations from the N5K seemed straightforward.&lt;br&gt;
-No FCoE, no zoning, no fancy storage integrations.&lt;/p&gt;</description>
+      <description>Why a Nexus 9000 may require an explicit VACL TCAM region, and the validation questions to ask before a configuration migration.</description>
     </item>
     <item>
       <title>Automating Cisco Device Upgrades with Ansible: A Playbook Journey</title>
@@ -64,12 +71,7 @@ No FCoE, no zoning, no fancy storage integrations.&lt;/p&gt;</description>
       <link>https://garywong.pro/posts/awx-network-automation/</link>
       <pubDate>Wed, 01 May 2024 00:00:00 +0000</pubDate>
       <guid>https://garywong.pro/posts/awx-network-automation/</guid>
-      <description>&lt;p&gt;I have been working on a project recently to assist a customer in upgrading &lt;strong&gt;thousands of devices&lt;/strong&gt; in their network. Managing such a large-scale upgrade requires automation to ensure consistency, efficiency, and reduced manual intervention.&lt;/p&gt;
-&lt;p&gt;For this project, &lt;strong&gt;AWX&lt;/strong&gt; was selected as the automation UI platform, providing a powerful interface for managing Ansible playbooks, job templates, inventories, and credentials.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;what-is-awx&#34;&gt;What is AWX?&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;AWX&lt;/strong&gt; is the upstream open-source project for Red Hat Ansible Tower.&lt;br&gt;
-It provides an intuitive web UI for:&lt;/p&gt;</description>
+      <description>A practical introduction to using AWX with Ansible for controlled network-device upgrade workflows.</description>
     </item>
     <item>
       <title>DHCP Relay in EVPN-VXLAN</title>

@@ -7,10 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Tweaking the Cisco Nexus 9000 TCAM: A Real-World Fix and iCAM Insights | Gary Wong&#39;s Blog</title>
 <meta name="keywords" content="networking, nexus9k, tcam, dc, architecture, troubleshooting">
-<meta name="description" content="In a recent project, I had the opportunity to work with something “new” yet familiar. During a customer data center refresh project, one of the key tasks was upgrading their aging Nexus 5000 to the new Nexus 9000 series.
-The model in play? N93360YC-FX2, a powerhouse with enhanced capabilities — but with a few nuances.
-At first glance, porting over configurations from the N5K seemed straightforward.
-No FCoE, no zoning, no fancy storage integrations.">
+<meta name="description" content="Why a Nexus 9000 may require an explicit VACL TCAM region, and the validation questions to ask before a configuration migration.">
 <meta name="author" content="Gary Wong">
 <link rel="canonical" href="https://garywong.pro/posts/nexus9000-tcam-icam/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.738d3eec7df446f6d9ac6b14ef74552551163505895402395b50d83b2f7312b7.css" integrity="sha256-c40&#43;7H30RvbZrGsU73RVJVEWNQWJVAI5W1DYOy9zErc=" rel="preload stylesheet" as="style">
@@ -76,15 +73,12 @@ No FCoE, no zoning, no fancy storage integrations.">
 </script><meta property="og:url" content="https://garywong.pro/posts/nexus9000-tcam-icam/">
   <meta property="og:site_name" content="Gary Wong&#39;s Blog">
   <meta property="og:title" content="Tweaking the Cisco Nexus 9000 TCAM: A Real-World Fix and iCAM Insights">
-  <meta property="og:description" content="In a recent project, I had the opportunity to work with something “new” yet familiar. During a customer data center refresh project, one of the key tasks was upgrading their aging Nexus 5000 to the new Nexus 9000 series.
-The model in play? N93360YC-FX2, a powerhouse with enhanced capabilities — but with a few nuances.
-At first glance, porting over configurations from the N5K seemed straightforward.
-No FCoE, no zoning, no fancy storage integrations.">
+  <meta property="og:description" content="Why a Nexus 9000 may require an explicit VACL TCAM region, and the validation questions to ask before a configuration migration.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-11-01T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-11-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-27T10:57:00+10:00">
     <meta property="article:tag" content="Networking">
     <meta property="article:tag" content="Nexus9k">
     <meta property="article:tag" content="Tcam">
@@ -94,10 +88,7 @@ No FCoE, no zoning, no fancy storage integrations.">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Tweaking the Cisco Nexus 9000 TCAM: A Real-World Fix and iCAM Insights">
-  <meta name="twitter:description" content="In a recent project, I had the opportunity to work with something “new” yet familiar. During a customer data center refresh project, one of the key tasks was upgrading their aging Nexus 5000 to the new Nexus 9000 series.
-The model in play? N93360YC-FX2, a powerhouse with enhanced capabilities — but with a few nuances.
-At first glance, porting over configurations from the N5K seemed straightforward.
-No FCoE, no zoning, no fancy storage integrations.">
+  <meta name="twitter:description" content="Why a Nexus 9000 may require an explicit VACL TCAM region, and the validation questions to ask before a configuration migration.">
 
 
 <script type="application/ld+json">
@@ -126,15 +117,15 @@ No FCoE, no zoning, no fancy storage integrations.">
   "@type": "BlogPosting",
   "headline": "Tweaking the Cisco Nexus 9000 TCAM: A Real-World Fix and iCAM Insights",
   "name": "Tweaking the Cisco Nexus 9000 TCAM: A Real-World Fix and iCAM Insights",
-  "description": "In a recent project, I had the opportunity to work with something “new” yet familiar. During a customer data center refresh project, one of the key tasks was upgrading their aging Nexus 5000 to the new Nexus 9000 series.\nThe model in play? N93360YC-FX2, a powerhouse with enhanced capabilities — but with a few nuances.\nAt first glance, porting over configurations from the N5K seemed straightforward.\nNo FCoE, no zoning, no fancy storage integrations.\n",
+  "description": "Why a Nexus 9000 may require an explicit VACL TCAM region, and the validation questions to ask before a configuration migration.",
   "keywords": [
     "networking", "nexus9k", "tcam", "dc", "architecture", "troubleshooting"
   ],
-  "articleBody": "In a recent project, I had the opportunity to work with something “new” yet familiar. During a customer data center refresh project, one of the key tasks was upgrading their aging Nexus 5000 to the new Nexus 9000 series.\nThe model in play? N93360YC-FX2, a powerhouse with enhanced capabilities — but with a few nuances.\nAt first glance, porting over configurations from the N5K seemed straightforward.\nNo FCoE, no zoning, no fancy storage integrations.\nBut then came the surprise.\nWhile copying over configurations, I encountered an unexpected error related to TCAM, specifically that the:\n“vacl region is not configured.”\nThis caused several issues:\nvPC was up, but no active VLANs appeared on the trunk Interface trunk showed error-disabled for all VLANs After some research — and input from my Cisco Champion network — it became clear that the Nexus 9000 requires explicit TCAM vacl region configuration for:\nACLs within VLAN maps ACLs under a port-channel for HSRP filtering What is TCAM? Ternary Content Addressable Memory (TCAM) is specialized high-speed lookup memory used in switches and routers.\nIt’s commonly used for:\nACLs QoS Route lookups Policy enforcement TCAM’s ability to match 0 / 1 / don’t care makes it powerful for complex packet classification.\nOn the N93360YC-FX2, the default TCAM partition had not allocated a VACL region — causing the configuration import error and the resulting trunk failure.\nThe Fix: Reconfigure TCAM Regions To resolve the issue, TCAM space needed to be explicitly defined.\nThe following configuration worked:\nswitch(config)# hardware access-list tcam region egr-racl 1280 switch(config)# hardware access-list tcam region ing-racl 2048 (Reboot required) switch(config)# hardware access-list tcam region vacl 256 (Reboot required) ",
-  "wordCount" : "272",
+  "articleBody": "I ran into a useful migration lesson while working through a Nexus 5000-to-Nexus 9000 configuration pattern: a familiar configuration can meet a different hardware-resource model.\nThe platform was an N93360YC-FX2, and the detail that mattered was its TCAM allocation.\nAt first glance, porting over configurations from the N5K seemed straightforward.\nNo FCoE, no zoning, no fancy storage integrations.\nBut then came the surprise.\nWhen applying the relevant policy configuration, I encountered an unexpected error related to TCAM, specifically that the:\n“vacl region is not configured.”\nThis caused several issues:\nvPC was up, but no active VLANs appeared on the trunk Interface trunk showed error-disabled for all VLANs The lesson was that this Nexus 9000 required explicit TCAM vacl region configuration for:\nACLs within VLAN maps ACLs under a port-channel for HSRP filtering What is TCAM? Ternary Content Addressable Memory (TCAM) is specialized high-speed lookup memory used in switches and routers.\nIt’s commonly used for:\nACLs QoS Route lookups Policy enforcement TCAM’s ability to match 0 / 1 / don’t care makes it powerful for complex packet classification.\nOn the N93360YC-FX2, the default TCAM partition had not allocated a VACL region — causing the configuration import error and the resulting trunk failure.\nThe Fix: Reconfigure TCAM Regions To resolve the issue, TCAM space needed to be explicitly defined.\nThe following configuration worked:\nswitch(config)# hardware access-list tcam region egr-racl 1280 switch(config)# hardware access-list tcam region ing-racl 2048 (Reboot required) switch(config)# hardware access-list tcam region vacl 256 (Reboot required) ",
+  "wordCount" : "246",
   "inLanguage": "en",
   "datePublished": "2024-11-01T00:00:00Z",
-  "dateModified": "2024-11-01T00:00:00Z",
+  "dateModified": "2026-09-27T10:57:00+10:00",
   "author":{
     "@type": "Person",
     "name": "Gary Wong"
@@ -219,6 +210,9 @@ No FCoE, no zoning, no fancy storage integrations.">
     <h1 class="post-title entry-hint-parent">
       Tweaking the Cisco Nexus 9000 TCAM: A Real-World Fix and iCAM Insights
     </h1>
+    <div class="post-description">
+      Why a Nexus 9000 may require an explicit VACL TCAM region, and the validation questions to ask before a configuration migration.
+    </div>
     <div class="post-meta"><span title='2024-11-01 00:00:00 +0000 UTC'>November 1, 2024</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>Gary Wong</span>
 
 </div>
@@ -239,12 +233,12 @@ No FCoE, no zoning, no fancy storage integrations.">
     </details>
 </div>
 
-  <div class="post-content"><p>In a recent project, I had the opportunity to work with something “new” yet familiar. During a customer data center refresh project, one of the key tasks was upgrading their aging Nexus 5000 to the new Nexus 9000 series.</p>
-<p>The model in play? <strong>N93360YC-FX2</strong>, a powerhouse with enhanced capabilities — but with a few nuances.</p>
+  <div class="post-content"><p>I ran into a useful migration lesson while working through a Nexus 5000-to-Nexus 9000 configuration pattern: a familiar configuration can meet a different hardware-resource model.</p>
+<p>The platform was an <strong>N93360YC-FX2</strong>, and the detail that mattered was its TCAM allocation.</p>
 <p>At first glance, porting over configurations from the N5K seemed straightforward.<br>
 No FCoE, no zoning, no fancy storage integrations.</p>
 <p>But then came the surprise.</p>
-<p>While copying over configurations, I encountered an unexpected error related to <strong>TCAM</strong>, specifically that the:</p>
+<p>When applying the relevant policy configuration, I encountered an unexpected error related to <strong>TCAM</strong>, specifically that the:</p>
 <blockquote>
 <p><strong>“vacl region is not configured.”</strong></p>
 </blockquote>
@@ -253,7 +247,7 @@ No FCoE, no zoning, no fancy storage integrations.</p>
 <li>vPC was up, but <strong>no active VLANs</strong> appeared on the trunk</li>
 <li>Interface trunk showed <strong>error-disabled</strong> for all VLANs</li>
 </ul>
-<p>After some research — and input from my Cisco Champion network — it became clear that the Nexus 9000 requires explicit <strong>TCAM vacl region</strong> configuration for:</p>
+<p>The lesson was that this Nexus 9000 required explicit <strong>TCAM vacl region</strong> configuration for:</p>
 <ul>
 <li>ACLs within VLAN maps</li>
 <li>ACLs under a port-channel for <strong>HSRP filtering</strong></li>

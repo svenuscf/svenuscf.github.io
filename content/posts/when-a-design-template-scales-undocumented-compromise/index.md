@@ -1,16 +1,20 @@
 ---
 title: "When a Design Template Scales Undocumented Compromise"
 date: 2026-03-11T22:10:00+11:00
+lastmod: 2026-09-27T10:57:00+10:00
 draft: false
 tags: ["networking"]
-description: "A follow-on site may inherit topology, but not the reasoning, constraints, or risks behind it."
+author: "Gary Wong"
+categories: ["Tech"]
+summary: "A reusable design pattern needs to preserve its rationale, constraints, and risks—not only its topology."
+description: "Why architecture templates must retain the reasoning and residual risk behind the pattern they repeat."
 ---
 ![Design template risk](/images/design-template-risk.png)
 Large transformation programs often rely on reusable design templates. In principle, that makes sense. A proven pattern should improve consistency, reduce design effort, and help delivery move faster across multiple sites.
 
 But that only works when the template preserves more than topology.
 
-Recently, I was involved in a follow-on site where an inherited template clearly contained structural compromises. I could see them early. The problem was not that compromise existed. Real projects always involve trade-offs. The real problem was that the design mandate was to follow the established template, while the rationale behind key design choices had not been documented clearly enough to guide architectural decisions.
+I have seen a recurring architecture problem: an inherited template clearly contains structural compromises, but the rationale behind them has not travelled with the template. The problem is not that compromise exists. Real designs always involve trade-offs. The problem begins when a pattern is expected to be reused without enough context to decide whether those trade-offs still apply.
 
 That meant the next site inherited the structure, but not the reasoning behind it.
 
@@ -39,7 +43,7 @@ The real issue begins when compromise is normalized into the template without pr
 
 Once that happens, reuse stops being safe standardization and starts becoming repeated ambiguity.
 
-## The follow-on site exposes what the template really is
+## Reuse exposes what the template really is
 
 A design can appear mature when judged only in the context where it was first produced.
 
@@ -58,7 +62,7 @@ That is a very different problem from implementation quality. It is a governance
 
 One of the most important lessons here is that undocumented risk does not stay neutral.
 
-If structural compromise is not explicitly identified, later teams and customers naturally assume they are working from an approved, supportable, repeatable standard. They do not see which parts of the pattern may already contain unresolved tension between target-state architecture and historical dependency.
+If structural compromise is not explicitly identified, later teams naturally assume they are working from an approved, supportable, repeatable standard. They do not see which parts of the pattern may already contain unresolved tension between target-state architecture and historical dependency.
 
 Then when issues begin surfacing across sites, the conversation becomes reactive.
 
@@ -66,7 +70,7 @@ Why does the standard still rely on legacy placement?
 Why is Layer 2 adjacency being extended further than expected?  
 Why were these design risks not made explicit earlier?
 
-By the time those questions are being raised by the customer, the real failure has already happened.
+By the time those questions are being raised during delivery or operations, the real failure has already happened.
 
 Not necessarily in implementation.  
 Not necessarily even in the original compromise itself.  
